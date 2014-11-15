@@ -651,6 +651,7 @@
 				CE667E5F1A175C420069CAC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CEC46CFE1A1758A80075541A /* Build configuration list for PBXProject "hlfy" */ = {
 			isa = XCConfigurationList;
