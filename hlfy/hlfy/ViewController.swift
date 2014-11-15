@@ -24,37 +24,92 @@ class ViewController: UIViewController {
         self.startObservingWeightChanges()
     }
     
-    lazy var query: HKObserverQuery = {[weak self] in
-        let strongSelf = self!
-        return HKObserverQuery(sampleType: strongSelf.weightQuantityType,
-            predicate: strongSelf.predicate,
-            updateHandler: strongSelf.weightChangeHandler)
-        }()
-    
     func weightChangeHandler(query: HKObserverQuery!,
         completionHandler: HKObserverQueryCompletionHandler!,
         error: NSError!){
             
             /* Be careful, we are not on the UI thread */
             println("data has changed")
-            
+            fetchRecordedWeightsInLastDay()
             completionHandler()
-            
     }
     
-    lazy var predicate: NSPredicate = {
-        let now = NSDate()
-        let yesterday =
-        NSCalendar.currentCalendar().dateByAddingUnit(.DayCalendarUnit,
-            value: -1,
-            toDate: now,
-            options: .WrapComponents)
-        return HKQuery.predicateForSamplesWithStartDate(yesterday, endDate: now, options: .StrictEndDate)
-    }()
+    func makeQuery() -> HKObserverQuery {
+        var query: HKObserverQuery = {[weak self] in
+            let strongSelf = self!
+            return HKObserverQuery(sampleType: strongSelf.weightQuantityType,
+                predicate: nil,
+                updateHandler: strongSelf.weightChangeHandler)
+            }()
+        return query
+    }
+    
+    func makePredicate() -> NSPredicate{
+        var predicate: NSPredicate = {
+            let now = NSDate()
+            let yesterday =
+            NSCalendar.currentCalendar().dateByAddingUnit(.DayCalendarUnit,
+                value: -1,
+                toDate: now,
+                options: .WrapComponents)
+            return HKQuery.predicateForSamplesWithStartDate(yesterday, endDate: now, options: .StrictEndDate)
+            }()
+        return predicate;
+    }
+
+    
+    
+    func fetchRecordedWeightsInLastDay(){
+    
+    let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
+      ascending: true)
+    
+    var query = HKSampleQuery(sampleType: weightQuantityType,
+      predicate: self.makePredicate(),
+      limit: Int(HKObjectQueryNoLimit),
+      sortDescriptors: [sortDescriptor],
+      resultsHandler: {[weak self] (query: HKSampleQuery!,
+        results: [AnyObject]!,
+        error: NSError!) in
+        
+        if results.count > 0{
+          
+          for sample in results as [HKQuantitySample]{
+            /* Get the weight in kilograms from the quantity */
+            let weightInKilograms = sample.quantity.doubleValueForUnit(
+              HKUnit.gramUnitWithMetricPrefix(.Kilo))
+            
+            /* This is the value of "KG", localized in user's language */
+            let formatter = NSMassFormatter()
+            let kilogramSuffix = formatter.unitStringFromValue(
+              weightInKilograms, unit: .Kilogram)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+              
+              let strongSelf = self!
+              
+              println("Weight has been changed to " +
+                "\(weightInKilograms) \(kilogramSuffix)")
+              println("Change date = \(sample.startDate)")
+              
+              })
+          }
+          
+        } else {
+          print("Could not read the user's weight ")
+          println("or no weight data was available")
+        }
+        
+        
+      })
+    
+    healthStore.executeQuery(query)
+    
+  }
     
     func startObservingWeightChanges(){
         
-        healthStore.executeQuery(query)
+        healthStore.executeQuery(self.makeQuery())
         
         healthStore.enableBackgroundDeliveryForType(weightQuantityType,
             frequency: .Immediate,
@@ -104,9 +159,9 @@ class ViewController: UIViewController {
             healthStore.requestAuthorizationToShareTypes(dataTypesToWrite(), readTypes: dataTypesToRead(), completion: { (success, error) -> Void in
                 if(success && error == nil) {
                     // Simulator check
-                    #if arch(i386) || arch(x86_64)
-                        self.mockHealtKitData();
-                    #endif
+//                    #if arch(i386) || arch(x86_64)
+//                        self.mockHealtKitData();
+//                    #endif
                 }
             })
         }
