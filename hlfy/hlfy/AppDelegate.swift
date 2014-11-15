@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let hlfySharedDefaults : NSUserDefaults = NSUserDefaults(suiteName:appGroupID)!
         let communicate = "Hello handsome, it's \(NSDate())"
         hlfySharedDefaults.setObject(communicate, forKey: widgetCommunicateKey)
+        hlfySharedDefaults.setObject(NSDate(), forKey: widgetCommunicateTimestampKey)
         println("data updated: " + communicate)
     }
 

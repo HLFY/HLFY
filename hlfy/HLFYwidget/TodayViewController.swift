@@ -13,30 +13,29 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
     @IBOutlet weak var communicateLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func performUpdate() {
         let hlfySharedDefaults : NSUserDefaults = NSUserDefaults(suiteName:appGroupID)!
         let communicate : String? = hlfySharedDefaults.objectForKey(widgetCommunicateKey) as? String
         if let communicate = communicate {
-            self.communicateLabel.text = communicate
+            let timestamp : NSDate? = hlfySharedDefaults.objectForKey(widgetCommunicateTimestampKey) as? NSDate
+            if let timestamp = timestamp {
+                // TODO: add logic that shows the outdated communicates
+                self.communicateLabel.text = communicate
+            } else {
+                self.communicateLabel.text = communicate
+            }
         } else {
-            self.communicateLabel.text = "much string so test wow \(NSDate())"
+            self.communicateLabel.text = NSLocalizedString("widgetDefaultCommunicate", comment: "")
         }
-
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.performUpdate()
     }
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
-        // Perform any setup necessary in order to update the view.
-
-        // If an error is encountered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
-
+        self.performUpdate()
         completionHandler(NCUpdateResult.NewData)
     }
     
