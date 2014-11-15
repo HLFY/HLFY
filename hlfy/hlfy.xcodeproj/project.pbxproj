@@ -291,8 +291,11 @@
 				TargetAttributes = {
 					CE667E501A175C420069CAC4 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = QZ2UF89N8Q;
+						DevelopmentTeam = QM635T44KB;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.HealthKit = {
 								enabled = 1;
 							};
@@ -300,8 +303,14 @@
 					};
 					CEC46D021A1758A80075541A = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = QZ2UF89N8Q;
+						DevelopmentTeam = QM635T44KB;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.HealthKit = {
 								enabled = 1;
 							};
