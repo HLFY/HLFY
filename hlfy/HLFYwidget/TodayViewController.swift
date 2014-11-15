@@ -21,14 +21,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             if let timestamp = timestamp {
                 // TODO: add logic that shows the outdated communicates
                 
-                self.communicateLabel.text = communicate
+                communicateLabel.text = communicate
             } else {
-                self.requestNewData()
-                self.communicateLabel.text = communicate
+                requestNewData()
+                communicateLabel.text = communicate
             }
         } else {
-            self.requestNewData()
-            self.communicateLabel.text = NSLocalizedString("widgetDefaultCommunicate", comment: "")
+            requestNewData()
+            communicateLabel.text = NSLocalizedString("widgetDefaultCommunicate", comment: "")
         }
     }
     
@@ -40,11 +40,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.performUpdate()
+        performUpdate()
     }
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
-        self.performUpdate()
+        performUpdate()
         completionHandler(NCUpdateResult.NewData)
     }
     

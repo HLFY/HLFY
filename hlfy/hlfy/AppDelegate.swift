@@ -22,12 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        self.performUpdate()
+        performUpdate()
         return true
     }
 
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        self.performUpdate()
+        performUpdate()
         completionHandler(UIBackgroundFetchResult.NewData)
     }
 
