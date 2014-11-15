@@ -15,7 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func performUpdate() {
         let hlfySharedDefaults : NSUserDefaults = NSUserDefaults(suiteName:appGroupID)!
-        let communicate = "Hello handsome, it's \(NSDate())"
+        let communicate = CommunicateBuilder().withWeightData([])
+                                              .withStepsData([])
+                                              .withDistanceData([])
+                                              .withSleepData([])
+                                              .build()
         hlfySharedDefaults.setObject(communicate, forKey: widgetCommunicateKey)
         hlfySharedDefaults.setObject(NSDate(), forKey: widgetCommunicateTimestampKey)
         println("data updated: " + communicate)
