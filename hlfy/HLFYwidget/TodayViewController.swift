@@ -13,7 +13,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
     @IBOutlet weak var communicateLabel: UILabel!
     
-    func performUpdate() {
+    func readFromSharedContainer() {
         let hlfySharedDefaults : NSUserDefaults = NSUserDefaults(suiteName:appGroupID)!
         let communicate : String? = hlfySharedDefaults.objectForKey(widgetCommunicateKey) as? String
         if let communicate = communicate {
@@ -40,12 +40,21 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        performUpdate()
+        readFromSharedContainer()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        readFromSharedContainer()
     }
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
-        performUpdate()
+        readFromSharedContainer()
         completionHandler(NCUpdateResult.NewData)
+    }
+    
+    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+        return UIEdgeInsetsZero
     }
     
 }
