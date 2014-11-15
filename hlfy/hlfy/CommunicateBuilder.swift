@@ -9,7 +9,7 @@
 import Foundation
 import HealthKit
 
-struct CommunicateBuilder {
+class CommunicateBuilder {
     
     let communicateProcessor = CommunicateProcessor()
     var dataInsights : [DataInsight]
@@ -18,26 +18,26 @@ struct CommunicateBuilder {
         dataInsights = []
     }
     
-    mutating func appendDataInsights(insights: [DataInsight]) {
+    func appendDataInsights(insights: [DataInsight]) {
         insights.map({ self.dataInsights.append($0) })
     }
     
-    mutating func withWeightData(weightData: [HKQuantitySample]) -> CommunicateBuilder {
+    func withWeightData(weightData: [HKQuantitySample]) -> CommunicateBuilder {
         appendDataInsights(communicateProcessor.processWeightData(weightData))
         return self;
     }
     
-    mutating func withSleepData(sleepData: [HKCategorySample]) -> CommunicateBuilder {
+    func withSleepData(sleepData: [HKCategorySample]) -> CommunicateBuilder {
         appendDataInsights(communicateProcessor.processSleepData(sleepData))
         return self;
     }
 
-    mutating func withDistanceData(distanceData: [HKCategorySample]) -> CommunicateBuilder {
+    func withDistanceData(distanceData: [HKCategorySample]) -> CommunicateBuilder {
         appendDataInsights(communicateProcessor.processDistanceData(distanceData))
         return self;
     }
 
-    mutating func withStepsData(stepData: [HKCategorySample]) -> CommunicateBuilder {
+    func withStepsData(stepData: [HKCategorySample]) -> CommunicateBuilder {
         appendDataInsights(communicateProcessor.processStepData(stepData))
         return self;
     }
