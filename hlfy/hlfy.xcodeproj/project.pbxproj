@@ -12,6 +12,8 @@
 		CE667E581A175C420069CAC4 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE667E571A175C420069CAC4 /* TodayViewController.swift */; };
 		CE667E5A1A175C420069CAC4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE667E591A175C420069CAC4 /* MainInterface.storyboard */; };
 		CE667E5D1A175C420069CAC4 /* HLFYwidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE667E511A175C420069CAC4 /* HLFYwidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CE667E6E1A1768680069CAC4 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE667E6D1A1768680069CAC4 /* HealthKit.framework */; };
+		CE667E6F1A17687C0069CAC4 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE667E6D1A1768680069CAC4 /* HealthKit.framework */; };
 		CEC46D091A1758A90075541A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46D081A1758A90075541A /* AppDelegate.swift */; };
 		CEC46D0B1A1758A90075541A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46D0A1A1758A90075541A /* ViewController.swift */; };
 		CEC46D0E1A1758A90075541A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC46D0C1A1758A90075541A /* Main.storyboard */; };
@@ -67,6 +69,9 @@
 		CE667E621A175C7F0069CAC4 /* HLFYwidget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HLFYwidget-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE667E651A175CA60069CAC4 /* hlfy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hlfy-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE667E681A175CC70069CAC4 /* hlfyTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hlfyTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		CE667E6C1A1768670069CAC4 /* hlfy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = hlfy.entitlements; sourceTree = "<group>"; };
+		CE667E6D1A1768680069CAC4 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		CE667E701A17687C0069CAC4 /* HLFYwidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HLFYwidget.entitlements; sourceTree = "<group>"; };
 		CEC46D031A1758A80075541A /* hlfy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hlfy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC46D071A1758A90075541A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC46D081A1758A90075541A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE667E531A175C420069CAC4 /* NotificationCenter.framework in Frameworks */,
+				CE667E6F1A17687C0069CAC4 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +99,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5D9F8A688D51CC48355431E /* libPods.a in Frameworks */,
+				CE667E6E1A1768680069CAC4 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +128,7 @@
 		C64F986B0F1823AB34B41B62 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE667E6D1A1768680069CAC4 /* HealthKit.framework */,
 				24C465B79976B76A1B896724 /* libPods.a */,
 				C57B0429C838FEE1D3486ED9 /* libPods-hlfyTests.a */,
 				CE667E521A175C420069CAC4 /* NotificationCenter.framework */,
@@ -131,6 +139,7 @@
 		CE667E541A175C420069CAC4 /* HLFYwidget */ = {
 			isa = PBXGroup;
 			children = (
+				CE667E701A17687C0069CAC4 /* HLFYwidget.entitlements */,
 				CE667E571A175C420069CAC4 /* TodayViewController.swift */,
 				CE667E591A175C420069CAC4 /* MainInterface.storyboard */,
 				CE667E551A175C420069CAC4 /* Supporting Files */,
@@ -172,6 +181,7 @@
 		CEC46D051A1758A80075541A /* hlfy */ = {
 			isa = PBXGroup;
 			children = (
+				CE667E6C1A1768670069CAC4 /* hlfy.entitlements */,
 				CEC46D081A1758A90075541A /* AppDelegate.swift */,
 				CEC46D0A1A1758A90075541A /* ViewController.swift */,
 				CEC46D0C1A1758A90075541A /* Main.storyboard */,
@@ -281,9 +291,21 @@
 				TargetAttributes = {
 					CE667E501A175C420069CAC4 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = QZ2UF89N8Q;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					CEC46D021A1758A80075541A = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = QZ2UF89N8Q;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					CEC46D171A1758A90075541A = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -467,6 +489,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HLFYwidget/HLFYwidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -474,6 +499,7 @@
 				INFOPLIST_FILE = HLFYwidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "HLFYwidget/HLFYwidget-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -484,9 +510,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HLFYwidget/HLFYwidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HLFYwidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "HLFYwidget/HLFYwidget-Bridging-Header.h";
 			};
@@ -577,10 +607,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = hlfy/hlfy.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = hlfy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "hlfy/hlfy-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -592,10 +626,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = hlfy/hlfy.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = hlfy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "hlfy/hlfy-Bridging-Header.h";
 			};
 			name = Release;
