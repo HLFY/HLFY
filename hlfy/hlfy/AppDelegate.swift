@@ -14,21 +14,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func performUpdate() {
-        let hlfySharedDefaults : NSUserDefaults = NSUserDefaults(suiteName: "group.HLFY")!
+        let hlfySharedDefaults : NSUserDefaults = NSUserDefaults(suiteName:appGroupID)!
         let communicate = "Hello handsome, it's \(NSDate())"
-        hlfySharedDefaults.setObject(communicate, forKey: "hlfy")
+        hlfySharedDefaults.setObject(communicate, forKey: widgetCommunicateKey)
+        hlfySharedDefaults.setObject(NSDate(), forKey: widgetCommunicateTimestampKey)
         println("data updated: " + communicate)
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        self.performUpdate()
+        performUpdate()
         return true
     }
 
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        self.performUpdate()
+        performUpdate()
         completionHandler(UIBackgroundFetchResult.NewData)
     }
 
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        performUpdate()
+        return true
+    }
+    
 }
 
