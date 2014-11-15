@@ -11,9 +11,18 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
         
+    @IBOutlet weak var communicateLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view from its nib.
+        let hlfySharedDefaults : NSUserDefaults = NSUserDefaults(suiteName:"group.HLFY")!
+        let communicate : String? = hlfySharedDefaults.objectForKey("hlfy") as? String
+        if let communicate = communicate {
+            self.communicateLabel.text = communicate
+        } else {
+            self.communicateLabel.text = "much string so test wow \(NSDate())"
+        }
+
     }
     
     override func didReceiveMemoryWarning() {
