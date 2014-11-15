@@ -15,8 +15,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let hlfySharedDefaults : NSUserDefaults = NSUserDefaults(suiteName:"group.HLFY")!
-        let communicate : String? = hlfySharedDefaults.objectForKey("hlfy") as? String
+        let hlfySharedDefaults : NSUserDefaults = NSUserDefaults(suiteName:appGroupID)!
+        let communicate : String? = hlfySharedDefaults.objectForKey(widgetCommunicateKey) as? String
         if let communicate = communicate {
             self.communicateLabel.text = communicate
         } else {

@@ -1,0 +1,13 @@
+//
+//  Consts.swift
+//  hlfy
+//
+//  Created by krzysztofsiejkowski on 15/11/14.
+//  Copyright (c) 2014 HLFY. All rights reserved.
+//
+
+import Foundation
+
+let appGroupID : String = "group.HLFY"
+let widgetCommunicateKey : String = "hlfy"
+

@@ -18,6 +18,8 @@
 		CEC46D101A1758A90075541A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC46D0F1A1758A90075541A /* Images.xcassets */; };
 		CEC46D131A1758A90075541A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC46D111A1758A90075541A /* LaunchScreen.xib */; };
 		CEC46D1F1A1758A90075541A /* hlfyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46D1E1A1758A90075541A /* hlfyTests.swift */; };
+		CEEDD3DF1A179434003B181E /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDD3DE1A179434003B181E /* Consts.swift */; };
+		CEEDD3E01A179482003B181E /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDD3DE1A179434003B181E /* Consts.swift */; };
 		D68AEAD7ECECA645F070439F /* libPods-hlfyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C57B0429C838FEE1D3486ED9 /* libPods-hlfyTests.a */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,7 @@
 		CEC46D181A1758A90075541A /* hlfyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hlfyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC46D1D1A1758A90075541A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC46D1E1A1758A90075541A /* hlfyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hlfyTests.swift; sourceTree = "<group>"; };
+		CEEDD3DE1A179434003B181E /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +185,7 @@
 				CEC46D0F1A1758A90075541A /* Images.xcassets */,
 				CEC46D111A1758A90075541A /* LaunchScreen.xib */,
 				CEC46D061A1758A80075541A /* Supporting Files */,
+				CEEDD3DE1A179434003B181E /* Consts.swift */,
 			);
 			path = hlfy;
 			sourceTree = "<group>";
@@ -433,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE667E581A175C420069CAC4 /* TodayViewController.swift in Sources */,
+				CEEDD3E01A179482003B181E /* Consts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC46D0B1A1758A90075541A /* ViewController.swift in Sources */,
+				CEEDD3DF1A179434003B181E /* Consts.swift in Sources */,
 				CEC46D091A1758A90075541A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
