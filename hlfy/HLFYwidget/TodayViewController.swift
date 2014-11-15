@@ -11,24 +11,61 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
         
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view from its nib.
+    @IBOutlet weak var communicateButton: UIButton!
+    
+    func readFromSharedContainer() {
+        let hlfySharedDefaults : NSUserDefaults = NSUserDefaults(suiteName:appGroupID)!
+        let communicate : String? = hlfySharedDefaults.objectForKey(widgetCommunicateKey) as? String
+        if let communicate = communicate {
+            let timestamp : NSDate? = hlfySharedDefaults.objectForKey(widgetCommunicateTimestampKey) as? NSDate
+            if let timestamp = timestamp {
+                // TODO: add logic that shows the outdated communicates
+                communicateButton.setTitle(communicate, forState: .Normal)
+            } else {
+                requestNewData()
+                communicateButton.setTitle(communicate, forState: .Normal)
+            }
+        } else {
+            requestNewData()
+            let defaultComminicate = NSLocalizedString("widgetDefaultCommunicate", comment: "")
+            communicateButton.setTitle(defaultComminicate, forState: .Normal)
+        }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func requestNewData() {
+        if let bundleIdentifier = NSBundle.mainBundle().bundleIdentifier {
+            NCWidgetController.widgetController().setHasContent(false, forWidgetWithBundleIdentifier: bundleIdentifier)
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        readFromSharedContainer()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        readFromSharedContainer()
     }
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
-        // Perform any setup necessary in order to update the view.
-
-        // If an error is encountered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
-
+        readFromSharedContainer()
         completionHandler(NCUpdateResult.NewData)
+    }
+    
+    @IBAction func communicateTapped() {
+        if let extensionContext = self.extensionContext {
+            let refreshURLScheme = hlfySchemeBaseURL + hlfySchemeRefreshDataURLComponent
+            extensionContext.openURL(NSURL(string: refreshURLScheme)!, completionHandler: { urlOpened in
+                if !urlOpened {
+                    self.requestNewData()
+                }
+            })
+        }
+    }
+    
+    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+        return UIEdgeInsetsZero
     }
     
 }

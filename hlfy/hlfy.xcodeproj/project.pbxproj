@@ -12,14 +12,16 @@
 		CE667E581A175C420069CAC4 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE667E571A175C420069CAC4 /* TodayViewController.swift */; };
 		CE667E5A1A175C420069CAC4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE667E591A175C420069CAC4 /* MainInterface.storyboard */; };
 		CE667E5D1A175C420069CAC4 /* HLFYwidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE667E511A175C420069CAC4 /* HLFYwidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CE667E6E1A1768680069CAC4 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE667E6D1A1768680069CAC4 /* HealthKit.framework */; };
-		CE667E6F1A17687C0069CAC4 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE667E6D1A1768680069CAC4 /* HealthKit.framework */; };
 		CEC46D091A1758A90075541A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46D081A1758A90075541A /* AppDelegate.swift */; };
 		CEC46D0B1A1758A90075541A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46D0A1A1758A90075541A /* ViewController.swift */; };
 		CEC46D0E1A1758A90075541A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC46D0C1A1758A90075541A /* Main.storyboard */; };
 		CEC46D101A1758A90075541A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC46D0F1A1758A90075541A /* Images.xcassets */; };
 		CEC46D131A1758A90075541A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC46D111A1758A90075541A /* LaunchScreen.xib */; };
 		CEC46D1F1A1758A90075541A /* hlfyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46D1E1A1758A90075541A /* hlfyTests.swift */; };
+		CEEDD3DF1A179434003B181E /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDD3DE1A179434003B181E /* Consts.swift */; };
+		CEEDD3E01A179482003B181E /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDD3DE1A179434003B181E /* Consts.swift */; };
+		CEEDD3E91A179A95003B181E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEEDD3EB1A179A95003B181E /* Localizable.strings */; };
+		CEEDD3F01A179AB4003B181E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEEDD3F21A179AB4003B181E /* Localizable.strings */; };
 		D68AEAD7ECECA645F070439F /* libPods-hlfyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C57B0429C838FEE1D3486ED9 /* libPods-hlfyTests.a */; };
 /* End PBXBuildFile section */
 
@@ -70,7 +72,6 @@
 		CE667E651A175CA60069CAC4 /* hlfy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hlfy-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE667E681A175CC70069CAC4 /* hlfyTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hlfyTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE667E6C1A1768670069CAC4 /* hlfy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = hlfy.entitlements; sourceTree = "<group>"; };
-		CE667E6D1A1768680069CAC4 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		CE667E701A17687C0069CAC4 /* HLFYwidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HLFYwidget.entitlements; sourceTree = "<group>"; };
 		CEC46D031A1758A80075541A /* hlfy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hlfy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC46D071A1758A90075541A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,6 +83,15 @@
 		CEC46D181A1758A90075541A /* hlfyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hlfyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC46D1D1A1758A90075541A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC46D1E1A1758A90075541A /* hlfyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hlfyTests.swift; sourceTree = "<group>"; };
+		CEEDD3DE1A179434003B181E /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
+		CEEDD3E51A179A11003B181E /* pl */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = pl; path = pl.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CEEDD3E61A179A11003B181E /* pl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = pl; path = pl.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		CEEDD3EA1A179A95003B181E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CEEDD3EC1A179A97003B181E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CEEDD3ED1A179A98003B181E /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CEEDD3F11A179AB4003B181E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CEEDD3F31A179AB5003B181E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CEEDD3F41A179AB6003B181E /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +100,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE667E531A175C420069CAC4 /* NotificationCenter.framework in Frameworks */,
-				CE667E6F1A17687C0069CAC4 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +108,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5D9F8A688D51CC48355431E /* libPods.a in Frameworks */,
-				CE667E6E1A1768680069CAC4 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,7 +136,6 @@
 		C64F986B0F1823AB34B41B62 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CE667E6D1A1768680069CAC4 /* HealthKit.framework */,
 				24C465B79976B76A1B896724 /* libPods.a */,
 				C57B0429C838FEE1D3486ED9 /* libPods-hlfyTests.a */,
 				CE667E521A175C420069CAC4 /* NotificationCenter.framework */,
@@ -152,6 +159,7 @@
 			children = (
 				CE667E561A175C420069CAC4 /* Info.plist */,
 				CE667E621A175C7F0069CAC4 /* HLFYwidget-Bridging-Header.h */,
+				CEEDD3EB1A179A95003B181E /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -188,6 +196,7 @@
 				CEC46D0F1A1758A90075541A /* Images.xcassets */,
 				CEC46D111A1758A90075541A /* LaunchScreen.xib */,
 				CEC46D061A1758A80075541A /* Supporting Files */,
+				CEEDD3DE1A179434003B181E /* Consts.swift */,
 			);
 			path = hlfy;
 			sourceTree = "<group>";
@@ -197,6 +206,7 @@
 			children = (
 				CE667E651A175CA60069CAC4 /* hlfy-Bridging-Header.h */,
 				CEC46D071A1758A90075541A /* Info.plist */,
+				CEEDD3F21A179AB4003B181E /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -297,7 +307,7 @@
 								enabled = 1;
 							};
 							com.apple.HealthKit = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -329,6 +339,7 @@
 			knownRegions = (
 				en,
 				Base,
+				pl,
 			);
 			mainGroup = CEC46CFA1A1758A80075541A;
 			productRefGroup = CEC46D041A1758A80075541A /* Products */;
@@ -348,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE667E5A1A175C420069CAC4 /* MainInterface.storyboard in Resources */,
+				CEEDD3E91A179A95003B181E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC46D0E1A1758A90075541A /* Main.storyboard in Resources */,
+				CEEDD3F01A179AB4003B181E /* Localizable.strings in Resources */,
 				CEC46D131A1758A90075541A /* LaunchScreen.xib in Resources */,
 				CEC46D101A1758A90075541A /* Images.xcassets in Resources */,
 			);
@@ -439,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE667E581A175C420069CAC4 /* TodayViewController.swift in Sources */,
+				CEEDD3E01A179482003B181E /* Consts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC46D0B1A1758A90075541A /* ViewController.swift in Sources */,
+				CEEDD3DF1A179434003B181E /* Consts.swift in Sources */,
 				CEC46D091A1758A90075541A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,6 +494,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				CEC46D0D1A1758A90075541A /* Base */,
+				CEEDD3E51A179A11003B181E /* pl */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -487,8 +503,29 @@
 			isa = PBXVariantGroup;
 			children = (
 				CEC46D121A1758A90075541A /* Base */,
+				CEEDD3E61A179A11003B181E /* pl */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		CEEDD3EB1A179A95003B181E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEEDD3EA1A179A95003B181E /* Base */,
+				CEEDD3EC1A179A97003B181E /* en */,
+				CEEDD3ED1A179A98003B181E /* pl */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		CEEDD3F21A179AB4003B181E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEEDD3F11A179AB4003B181E /* Base */,
+				CEEDD3F31A179AB5003B181E /* en */,
+				CEEDD3F41A179AB6003B181E /* pl */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
