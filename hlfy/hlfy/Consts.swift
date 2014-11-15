@@ -11,4 +11,5 @@ import Foundation
 let appGroupID : String = "group.HLFY"
 let widgetCommunicateKey : String = "com.hlfy.hlfy.communicate"
 let widgetCommunicateTimestampKey : String = "com.hlfy.hlfy.communicate.timestamp"
-
+let hlfySchemeBaseURL : String = "hlfy://"
+let hlfySchemeRefreshDataURLComponent : String = "refresh"

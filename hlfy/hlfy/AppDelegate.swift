@@ -31,5 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         completionHandler(UIBackgroundFetchResult.NewData)
     }
 
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        performUpdate()
+        return true
+    }
+    
 }
 

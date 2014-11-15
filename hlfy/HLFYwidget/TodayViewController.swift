@@ -11,7 +11,7 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
         
-    @IBOutlet weak var communicateLabel: UILabel!
+    @IBOutlet weak var communicateButton: UIButton!
     
     func readFromSharedContainer() {
         let hlfySharedDefaults : NSUserDefaults = NSUserDefaults(suiteName:appGroupID)!
@@ -20,15 +20,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             let timestamp : NSDate? = hlfySharedDefaults.objectForKey(widgetCommunicateTimestampKey) as? NSDate
             if let timestamp = timestamp {
                 // TODO: add logic that shows the outdated communicates
-                
-                communicateLabel.text = communicate
+                communicateButton.setTitle(communicate, forState: .Normal)
             } else {
                 requestNewData()
-                communicateLabel.text = communicate
+                communicateButton.setTitle(communicate, forState: .Normal)
             }
         } else {
             requestNewData()
-            communicateLabel.text = NSLocalizedString("widgetDefaultCommunicate", comment: "")
+            let defaultComminicate = NSLocalizedString("widgetDefaultCommunicate", comment: "")
+            communicateButton.setTitle(defaultComminicate, forState: .Normal)
         }
     }
     
@@ -51,6 +51,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
         readFromSharedContainer()
         completionHandler(NCUpdateResult.NewData)
+    }
+    
+    @IBAction func communicateTapped() {
+        if let extensionContext = self.extensionContext {
+            let refreshURLScheme = hlfySchemeBaseURL + hlfySchemeRefreshDataURLComponent
+            extensionContext.openURL(NSURL(string: refreshURLScheme)!, completionHandler: { urlOpened in
+                if !urlOpened {
+                    self.requestNewData()
+                }
+            })
+        }
     }
     
     func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
