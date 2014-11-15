@@ -20,12 +20,21 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             let timestamp : NSDate? = hlfySharedDefaults.objectForKey(widgetCommunicateTimestampKey) as? NSDate
             if let timestamp = timestamp {
                 // TODO: add logic that shows the outdated communicates
+                
                 self.communicateLabel.text = communicate
             } else {
+                self.requestNewData()
                 self.communicateLabel.text = communicate
             }
         } else {
+            self.requestNewData()
             self.communicateLabel.text = NSLocalizedString("widgetDefaultCommunicate", comment: "")
+        }
+    }
+    
+    func requestNewData() {
+        if let bundleIdentifier = NSBundle.mainBundle().bundleIdentifier {
+            NCWidgetController.widgetController().setHasContent(false, forWidgetWithBundleIdentifier: bundleIdentifier)
         }
     }
     
