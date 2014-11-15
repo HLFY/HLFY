@@ -9,15 +9,23 @@
 import Foundation
 import HealthKit
 
-enum DataTrend {
-    case Ascending
-    case Descending
-    case Steady
-}
-
 enum DataInsight {
-    case Weight(DataTrend)
-    case Sleep(DataTrend)
-    case Step(DataTrend)
-    case Distance(DataTrend)
+    
+    enum DataTrend {
+        case Ascending
+        case Descending
+        case Steady
+    }
+    
+    enum TimeInterval {
+        case Day
+        case HalfWeek
+        case Week
+        case Month
+    }
+    
+    case Weight(DataTrend, TimeInterval)
+    case Sleep(DataTrend, TimeInterval)
+    case Step(DataTrend, TimeInterval)
+    case Distance(DataTrend, TimeInterval)
 }

@@ -12,12 +12,8 @@ import HealthKit
 class CommunicateBuilder {
     
     let communicateProcessor = CommunicateProcessor()
-    var dataInsights : [DataInsight]
-    
-    init () {
-        dataInsights = []
-    }
-    
+    var dataInsights : [DataInsight] = []
+        
     func appendDataInsights(insights: [DataInsight]) {
         insights.map({ self.dataInsights.append($0) })
     }
@@ -43,7 +39,8 @@ class CommunicateBuilder {
     }
     
     func build() -> String {
-        return CommunicateGenerator().generateFromData(dataInsights)
+        let suggestions = communicateProcessor.processDataInsights(dataInsights)
+        return CommunicateGenerator().generateFromData(suggestions)
     }
     
 }

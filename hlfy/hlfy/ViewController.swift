@@ -74,10 +74,12 @@ class ViewController: UIViewController {
         
         if results.count > 0{
           
-          for sample in results as [HKQuantitySample]{
+          for sample in results as [HKQuantitySample] {
             /* Get the weight in kilograms from the quantity */
             let weightInKilograms = sample.quantity.doubleValueForUnit(
               HKUnit.gramUnitWithMetricPrefix(.Kilo))
+            
+            sample.quantity.
             
             /* This is the value of "KG", localized in user's language */
             let formatter = NSMassFormatter()
