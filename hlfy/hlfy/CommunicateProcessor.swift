@@ -19,11 +19,11 @@ struct CommunicateProcessor {
         return [.Sleep(.Ascending)]
     }
 
-    func processDistanceData(distanceData: [HKCategorySample]) -> [DataInsight] {
+    func processDistanceData(distanceData: [HKQuantitySample]) -> [DataInsight] {
         return [.Distance(.Ascending)]
     }
 
-    func processStepData(stepData: [HKCategorySample]) -> [DataInsight] {
+    func processStepData(stepData: [HKQuantitySample]) -> [DataInsight] {
         return [.Step(.Ascending)]
     }    
     

@@ -32,12 +32,12 @@ class CommunicateBuilder {
         return self;
     }
 
-    func withDistanceData(distanceData: [HKCategorySample]) -> CommunicateBuilder {
+    func withDistanceData(distanceData: [HKQuantitySample]) -> CommunicateBuilder {
         appendDataInsights(communicateProcessor.processDistanceData(distanceData))
         return self;
     }
 
-    func withStepsData(stepData: [HKCategorySample]) -> CommunicateBuilder {
+    func withStepsData(stepData: [HKQuantitySample]) -> CommunicateBuilder {
         appendDataInsights(communicateProcessor.processStepData(stepData))
         return self;
     }
