@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB9FB03B1A17C6DF00144B3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC46D0F1A1758A90075541A /* Images.xcassets */; };
+		AB9FB03D1A17CEF400144B3D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9FB03C1A17CEF300144B3D /* Social.framework */; };
+		AB9FB03F1A17CEF800144B3D /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9FB03E1A17CEF800144B3D /* Accounts.framework */; };
 		C5D9F8A688D51CC48355431E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C465B79976B76A1B896724 /* libPods.a */; };
 		CE667E531A175C420069CAC4 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE667E521A175C420069CAC4 /* NotificationCenter.framework */; };
 		CE667E581A175C420069CAC4 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE667E571A175C420069CAC4 /* TodayViewController.swift */; };
@@ -62,6 +65,8 @@
 		3CFD350661A9263A9D3518E7 /* Pods-hlfyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hlfyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-hlfyTests/Pods-hlfyTests.release.xcconfig"; sourceTree = "<group>"; };
 		3D348B0C7DF44C7ED23A32E5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		992D415F7E34F8D4C3D1C76A /* Pods-hlfyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hlfyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hlfyTests/Pods-hlfyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AB9FB03C1A17CEF300144B3D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		AB9FB03E1A17CEF800144B3D /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		C57B0429C838FEE1D3486ED9 /* libPods-hlfyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hlfyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE667E511A175C420069CAC4 /* HLFYwidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HLFYwidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE667E521A175C420069CAC4 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -99,6 +104,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB9FB03F1A17CEF800144B3D /* Accounts.framework in Frameworks */,
+				AB9FB03D1A17CEF400144B3D /* Social.framework in Frameworks */,
 				CE667E531A175C420069CAC4 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +143,8 @@
 		C64F986B0F1823AB34B41B62 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB9FB03E1A17CEF800144B3D /* Accounts.framework */,
+				AB9FB03C1A17CEF300144B3D /* Social.framework */,
 				24C465B79976B76A1B896724 /* libPods.a */,
 				C57B0429C838FEE1D3486ED9 /* libPods-hlfyTests.a */,
 				CE667E521A175C420069CAC4 /* NotificationCenter.framework */,
@@ -358,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB9FB03B1A17C6DF00144B3D /* Images.xcassets in Resources */,
 				CE667E5A1A175C420069CAC4 /* MainInterface.storyboard in Resources */,
 				CEEDD3E91A179A95003B181E /* Localizable.strings in Resources */,
 			);

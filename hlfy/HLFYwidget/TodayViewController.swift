@@ -8,6 +8,8 @@
 
 import UIKit
 import NotificationCenter
+import Social
+import Accounts
 
 class TodayViewController: UIViewController, NCWidgetProviding {
         
@@ -63,6 +65,27 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             })
         }
     }
+    
+    @IBAction func facebookTapped(sender: UIButton) {
+        showSocialControllerForServiceType(SLServiceTypeFacebook)
+    }
+    
+    @IBAction func twitterTapped(sender: UIButton) {
+        showSocialControllerForServiceType(SLServiceTypeTwitter)
+    }
+    
+    func showSocialControllerForServiceType(serviceType: NSString!) {
+        if(serviceType != SLServiceTypeTwitter && serviceType != SLServiceTypeFacebook) { return }
+        
+        if (SLComposeViewController.isAvailableForServiceType(serviceType)) {
+            
+            let mySLComposerSheet: SLComposeViewController = SLComposeViewController(forServiceType: serviceType)
+            
+            mySLComposerSheet.setInitialText("\"" + communicateButton.titleForState(.Normal)! + "\"\n\n#HLFY #SwiftCrunch")
+            self.presentViewController(mySLComposerSheet, animated: true, completion: nil)
+        }
+    }
+    
     
     func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
         return UIEdgeInsetsZero
