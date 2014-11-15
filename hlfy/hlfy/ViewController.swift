@@ -53,14 +53,16 @@ class ViewController: UIViewController {
         if (HKHealthStore.isHealthDataAvailable()) {
             healthStore.requestAuthorizationToShareTypes(dataTypesToWrite(), readTypes: dataTypesToRead(), completion: { (success, error) -> Void in
                 if(success && error == nil) {
-                    self.mockHealtKitData();
+                    // Simulator check
+                    #if arch(i386) || arch(x86_64)
+                        self.mockHealtKitData();
+                    #endif
                 }
             })
         }
     }
     
     func mockHealtKitData() {
-        
         let date : NSDate = NSDate();
         
         let distanceWalkingRunningType: HKQuantityType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)
