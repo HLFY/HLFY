@@ -79,8 +79,6 @@ class ViewController: UIViewController {
             let weightInKilograms = sample.quantity.doubleValueForUnit(
               HKUnit.gramUnitWithMetricPrefix(.Kilo))
             
-            sample.quantity.
-            
             /* This is the value of "KG", localized in user's language */
             let formatter = NSMassFormatter()
             let kilogramSuffix = formatter.unitStringFromValue(

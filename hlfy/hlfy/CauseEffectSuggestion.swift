@@ -10,6 +10,8 @@ import Foundation
 
 struct CauseEffectSuggestion {
     
-    
+    let cause : DataInsight
+    let effect : DataInsight
+    let suggestion : DataInsight
     
 }

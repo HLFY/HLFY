@@ -23,7 +23,7 @@ enum DataInsight {
         case Week
         case Month
     }
-    
+        
     case Weight(DataTrend, TimeInterval)
     case Sleep(DataTrend, TimeInterval)
     case Step(DataTrend, TimeInterval)

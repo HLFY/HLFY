@@ -40,7 +40,7 @@ struct CommunicateProcessor {
                 generateDistanceForTrend(insight)
             }
         }
-        return [CauseEffectSuggestion()]
+        return [CauseEffectSuggestion(cause: dataInsights[0], effect: dataInsights[0], suggestion: dataInsights[0])]
     }
     
     func generateWeightForTrend(trend: DataInsight) -> String {
