@@ -5,3 +5,5 @@
   Created by krzysztofsiejkowski on 15/11/14.
   Copyright (c) 2014 HLFY. All rights reserved.
 */
+
+widgetDefaultCommunicate = "Wygląda na to, że nie nie mogę nic dla Ciebie wyświetlić. Jaka szkoda!";
