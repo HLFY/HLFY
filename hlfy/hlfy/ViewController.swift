@@ -14,35 +14,56 @@ class ViewController: UIViewController {
     var healthStore: HKHealthStore = HKHealthStore()
     let weightQuantityType = HKQuantityType.quantityTypeForIdentifier(
         HKQuantityTypeIdentifierBodyMass)
+    let distanceCountType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)
+    let sleepCategoryType = HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-
-        
         self.getHealthKitData()
-        self.startObservingWeightChanges()
+        self.startObservingChanges()
     }
     
-    func weightChangeHandler(query: HKObserverQuery!,
+    func dataChangeHandler(query: HKObserverQuery!,
         completionHandler: HKObserverQueryCompletionHandler!,
         error: NSError!){
             
-            /* Be careful, we are not on the UI thread */
             println("data has changed")
             fetchRecordedWeightsInLastDay()
+            fetchRecordedDistanceInLastDay()
+            fetchRecordedSleepInLastDay()
             completionHandler()
     }
     
-    func makeQuery() -> HKObserverQuery {
+    func makeWeightQuery() -> HKObserverQuery {
         var query: HKObserverQuery = {[weak self] in
             let strongSelf = self!
             return HKObserverQuery(sampleType: strongSelf.weightQuantityType,
                 predicate: nil,
-                updateHandler: strongSelf.weightChangeHandler)
+                updateHandler: strongSelf.dataChangeHandler)
             }()
         return query
     }
+    
+    func makeDistanceQuery() -> HKObserverQuery {
+        var query: HKObserverQuery = {[weak self] in
+            let strongSelf = self!
+            return HKObserverQuery(sampleType: strongSelf.distanceCountType,
+                predicate: nil,
+                updateHandler: strongSelf.dataChangeHandler)
+            }()
+        return query
+    }
+    
+    func makeSleepQuery() -> HKObserverQuery {
+        var query: HKObserverQuery = {[weak self] in
+            let strongSelf = self!
+            return HKObserverQuery(sampleType: strongSelf.sleepCategoryType,
+                predicate: nil,
+                updateHandler: strongSelf.dataChangeHandler)
+            }()
+        return query
+    }
+    
     
     func makePredicate() -> NSPredicate{
         var predicate: NSPredicate = {
@@ -74,7 +95,12 @@ class ViewController: UIViewController {
         
         if results?.count > 0 {
           
+        var samples: [(Double, Double)] = [];
+            
           for sample in results as [HKQuantitySample] {
+            
+            var weightSample:(Double, Double)
+            
             /* Get the weight in kilograms from the quantity */
             let weightInKilograms = sample.quantity.doubleValueForUnit(
               HKUnit.gramUnitWithMetricPrefix(.Kilo))
@@ -84,16 +110,13 @@ class ViewController: UIViewController {
             let kilogramSuffix = formatter.unitStringFromValue(
               weightInKilograms, unit: .Kilogram)
             
-            dispatch_async(dispatch_get_main_queue(), {
-              
-              let strongSelf = self!
-              
-              println("Weight has been changed to " +
-                "\(weightInKilograms) \(kilogramSuffix)")
-              println("Change date = \(sample.startDate)")
-              
-              })
+            
+            samples.append(sample.startDate.timeIntervalSince1970,weightInKilograms)
+            
           }
+        println("weight sample")
+        println(samples)
+        
           
         } else {
           print("Could not read the user's weight ")
@@ -107,9 +130,94 @@ class ViewController: UIViewController {
     
   }
     
-    func startObservingWeightChanges(){
+    func fetchRecordedDistanceInLastDay(){
         
-        healthStore.executeQuery(self.makeQuery())
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
+            ascending: true)
+        
+        var query = HKSampleQuery(sampleType: distanceCountType,
+            predicate: self.makePredicate(),
+            limit: Int(HKObjectQueryNoLimit),
+            sortDescriptors: [sortDescriptor],
+            resultsHandler: {[weak self] (query: HKSampleQuery!,
+                results: [AnyObject]!,
+                error: NSError!) in
+                
+                if results.count > 0{
+                    println("Distance data from change")
+                    
+                    
+                    var samples: [(Double, Double)] = [];
+                    for sample in results as [HKQuantitySample] {
+                        var distanceSample:(Double, Double)
+                        
+                        let distance = sample.quantity.doubleValueForUnit(HKUnit.meterUnit())
+                        
+                        samples.append(sample.startDate.timeIntervalSince1970,distance)
+                        
+                    }
+                    println("distance sample")
+                    println(samples)
+                    
+                    
+                    
+                } else {
+                    print("Could not read the user's distance ")
+                    println("or no distance data was available")
+                }
+                
+                
+        })
+        healthStore.executeQuery(query)
+    }
+    
+    func fetchRecordedSleepInLastDay(){
+        
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
+            ascending: true)
+        
+        var query = HKSampleQuery(sampleType: sleepCategoryType,
+            predicate: self.makePredicate(),
+            limit: Int(HKObjectQueryNoLimit),
+            sortDescriptors: [sortDescriptor],
+            resultsHandler: {[weak self] (query: HKSampleQuery!,
+                results: [AnyObject]!,
+                error: NSError!) in
+                println("sleep results")
+                println(results)
+//                if results.count > 0{
+//                    println("Distance data from change")
+//                    
+//                    for sample in results as [HKCategorySample] {
+//                        
+//                        let sleep = sample.endDate.timeIntervalSince1970 - sample.startDate.timeIntervalSince1970;
+//                        
+//                        dispatch_async(dispatch_get_main_queue(), {
+//                            
+//                            let strongSelf = self!
+//                            
+//                            println("Sleep length has been changed to " + "\(sleep)")
+//                            println("Change date = \(sample.startDate)")
+//                            
+//                        })
+//                    }
+//                    
+//                } else {
+//                    print("Could not read the user's sleep ")
+//                    println("or no sleep data was available")
+//                }
+                
+                
+        })
+        healthStore.executeQuery(query)
+    }
+    
+    
+    func startObservingChanges(){
+        
+        healthStore.executeQuery(self.makeWeightQuery())
+        healthStore.executeQuery(self.makeDistanceQuery())
+        healthStore.executeQuery(self.makeSleepQuery())
         
         healthStore.enableBackgroundDeliveryForType(weightQuantityType,
             frequency: .Immediate,
@@ -118,7 +226,33 @@ class ViewController: UIViewController {
                     println("Enabled background delivery of weight changes")
                 } else {
                     if let theError = error{
-                        print("Failed to enable background delivery. ")
+                        print("Failed to enable background delivery for weight. ")
+                        println("Error = \(theError)")
+                    }
+                }
+        })
+        
+        healthStore.enableBackgroundDeliveryForType(distanceCountType,
+            frequency: .Immediate,
+            withCompletion: {(succeeded: Bool, error: NSError!) in
+                if succeeded{
+                    println("Enabled background delivery of distance changes")
+                } else {
+                    if let theError = error{
+                        print("Failed to enable background delivery for distance. ")
+                        println("Error = \(theError)")
+                    }
+                }
+        })
+        
+        healthStore.enableBackgroundDeliveryForType(sleepCategoryType,
+            frequency: .Immediate,
+            withCompletion: {(succeeded: Bool, error: NSError!) in
+                if succeeded{
+                    println("Enabled background delivery of sleep changes")
+                } else {
+                    if let theError = error{
+                        print("Failed to enable background delivery for sleep. ")
                         println("Error = \(theError)")
                     }
                 }

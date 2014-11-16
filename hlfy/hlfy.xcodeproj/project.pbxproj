@@ -30,6 +30,7 @@
 		CEEDD3FC1A17C1AA003B181E /* DataInsight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDD3FB1A17C1AA003B181E /* DataInsight.swift */; };
 		CEEDD3FE1A17CE32003B181E /* CommunicateGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDD3FD1A17CE32003B181E /* CommunicateGenerator.swift */; };
 		CEEDD4001A17F5CE003B181E /* CauseEffectSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDD3FF1A17F5CE003B181E /* CauseEffectSuggestion.swift */; };
+		CEEDD4021A18BB3F003B181E /* SharedContainerUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDD4011A18BB3F003B181E /* SharedContainerUpdater.swift */; };
 		D68AEAD7ECECA645F070439F /* libPods-hlfyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C57B0429C838FEE1D3486ED9 /* libPods-hlfyTests.a */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,7 @@
 		CEEDD3FB1A17C1AA003B181E /* DataInsight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataInsight.swift; sourceTree = "<group>"; };
 		CEEDD3FD1A17CE32003B181E /* CommunicateGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicateGenerator.swift; sourceTree = "<group>"; };
 		CEEDD3FF1A17F5CE003B181E /* CauseEffectSuggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CauseEffectSuggestion.swift; sourceTree = "<group>"; };
+		CEEDD4011A18BB3F003B181E /* SharedContainerUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedContainerUpdater.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 				CEEDD3FB1A17C1AA003B181E /* DataInsight.swift */,
 				CEEDD3FD1A17CE32003B181E /* CommunicateGenerator.swift */,
 				CEEDD3FF1A17F5CE003B181E /* CauseEffectSuggestion.swift */,
+				CEEDD4011A18BB3F003B181E /* SharedContainerUpdater.swift */,
 			);
 			path = hlfy;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEEDD4021A18BB3F003B181E /* SharedContainerUpdater.swift in Sources */,
 				CEEDD4001A17F5CE003B181E /* CauseEffectSuggestion.swift in Sources */,
 				CEC46D0B1A1758A90075541A /* ViewController.swift in Sources */,
 				CEEDD3FA1A17C068003B181E /* CommunicateProcessor.swift in Sources */,

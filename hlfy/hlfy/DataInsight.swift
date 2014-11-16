@@ -12,16 +12,11 @@ import HealthKit
 enum DataInsight {
     
     enum DataTrend {
-        case Ascending
-        case Descending
-        case Steady
+        case Ascending, Descending, Steady
     }
     
     enum TimeInterval {
-        case Day
-        case HalfWeek
-        case Week
-        case Month
+        case Now, Day, HalfWeek, Week, Month
     }
         
     case Weight(DataTrend, TimeInterval)

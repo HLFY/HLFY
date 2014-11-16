@@ -15,4 +15,4 @@ let hlfySchemeBaseURL : String = "hlfy://"
 let hlfySchemeRefreshDataURLComponent : String = "refresh"
 let hlfySchemeFacebookDataURLComponent : String = "facebook"
 let hlfySchemeTwitterDataURLComponent : String = "twitter"
-let dayInterval : NSTimeInterval = 86400
+let dayInterval : Double = 86400
