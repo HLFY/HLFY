@@ -71,6 +71,8 @@ struct CommunicateProcessor {
     
     // więcej śpisz, więcej biegasz (s - d)
     private func suggestionsForSleepDistanceHypothesis(dataInsights: [DataInsight]) -> CauseEffectSuggestion {
+        let sleep = sleepData(dataInsights)
+        let distance = distanceData(dataInsights)
         
         let cause = DataInsight.Sleep(.Ascending, .Month)
         let effect = DataInsight.Distance(.Ascending, .Week)
@@ -80,6 +82,9 @@ struct CommunicateProcessor {
     
     // więcej biegasz, chudniesz (d - w)
     private func suggestionsForDistanceWeightHypothesis(dataInsights: [DataInsight]) -> CauseEffectSuggestion {
+        let weight = weightData(dataInsights)
+        let distance = distanceData(dataInsights)
+        
         let cause = DataInsight.Distance(.Descending, .Week)
         let effect = DataInsight.Weight(.Ascending, .Month)
         let suggestion = DataInsight.Distance(.Ascending, .HalfWeek)
@@ -88,6 +93,9 @@ struct CommunicateProcessor {
     
     // mniej śpisz, chudniesz (s - w)
     private func suggestionsForSleepWeightHypothesis(dataInsights: [DataInsight]) -> CauseEffectSuggestion {
+        let sleep = sleepData(dataInsights)
+        let weight = weightData(dataInsights)
+        
         let cause = DataInsight.Sleep(.Descending, .HalfWeek)
         let effect = DataInsight.Weight(.Descending, .Week)
         let suggestion = DataInsight.Distance(.Ascending, .Now)
@@ -96,6 +104,9 @@ struct CommunicateProcessor {
     
     // więcej biegasz, więcej śpisz (d - s)
     private func suggestionsForDistanceSleepHypothesis(dataInsights: [DataInsight]) -> CauseEffectSuggestion {
+        let sleep = sleepData(dataInsights)
+        let distance = distanceData(dataInsights)
+        
         let cause = DataInsight.Distance(.Ascending, .Week)
         let effect = DataInsight.Sleep(.Ascending, .HalfWeek)
         let suggestion = DataInsight.Distance(.Steady, .Month)
@@ -104,6 +115,9 @@ struct CommunicateProcessor {
     
     // chudniesz, mniej śpisz (w - s)
     private func suggestionsForWeightSleepHypothesis(dataInsights: [DataInsight]) -> CauseEffectSuggestion {
+        let sleep = sleepData(dataInsights)
+        let weight = weightData(dataInsights)
+        
         let cause = DataInsight.Weight(.Descending, .Month)
         let effect = DataInsight.Sleep(.Descending, .Week)
         let suggestion = DataInsight.Weight(.Ascending, .Now)
@@ -135,6 +149,50 @@ struct CommunicateProcessor {
         default:
             return .Steady
         }
+    }
+    
+    func sleepData(data: [DataInsight]) -> [DataInsight] {
+        return data.filter({ insight in
+            switch insight {
+            case .Sleep(_,_):
+                return true
+            default:
+                return false
+            }
+        })
+    }
+    
+    func weightData(data: [DataInsight]) -> [DataInsight] {
+        return data.filter({ insight in
+            switch insight {
+            case .Weight(_,_):
+                return true
+            default:
+                return false
+            }
+        })
+    }
+    
+    func stepsData(data: [DataInsight]) -> [DataInsight] {
+        return data.filter({ insight in
+            switch insight {
+            case .Step(_,_):
+                return true
+            default:
+                return false
+            }
+        })
+    }
+    
+    func distanceData(data: [DataInsight]) -> [DataInsight] {
+        return data.filter({ insight in
+            switch insight {
+            case .Distance(_,_):
+                return true
+            default:
+                return false
+            }
+        })
     }
     
 }
