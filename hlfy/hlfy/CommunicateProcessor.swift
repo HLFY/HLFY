@@ -34,7 +34,10 @@ struct CommunicateProcessor {
     }
     
     private func suggestionsForSleepDistanceHypothesis(dataInsights: [DataInsight]) -> [CauseEffectSuggestion] {
-        return []
+        let cause = DataInsight.Distance(.Descending, .Month)
+        let effect = DataInsight.Weight(.Ascending, .Week)
+        let suggestion = DataInsight.Distance(.Ascending, .Now)
+        return [CauseEffectSuggestion(cause: cause, effect: effect, suggestion: suggestion)]
     }
     
 }

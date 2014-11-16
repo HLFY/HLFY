@@ -17,8 +17,7 @@ struct CommunicateGenerator {
     
     func generateFromData(data: [CauseEffectSuggestion]) -> String {
         if data.count > 0 {
-            let randomIndex = Int(arc4random_uniform(UInt32(data.count) - UInt32(0)) + UInt32(data.count))
-            return descriptionForData(data[randomIndex])
+            return descriptionForData(data[0])
         } else {
             return NSLocalizedString("widgetDefaultCommunicate", comment: "")
         }
@@ -27,9 +26,9 @@ struct CommunicateGenerator {
     func descriptionForData(suggestion: CauseEffectSuggestion) -> String {
         var communicate = ""
         var fullStop = true
-        communicate = descriptionForEffect(suggestion.effect, communicate)
-        communicate = descriptionForCause(suggestion.cause, communicate)
-        communicate = descriptionForSuggestion(suggestion.suggestion, communicate)
+        communicate += descriptionForEffect(suggestion.effect, communicate)
+        communicate += descriptionForCause(suggestion.cause, communicate)
+        communicate += descriptionForSuggestion(suggestion.suggestion, communicate)
         return communicate
     }
     
@@ -42,7 +41,7 @@ struct CommunicateGenerator {
         case .Distance(.Steady, let time):
             return "Niewiele się zmieniło " + pastTimeModifier(time, .Middle) + "jeśli chodzi o bieganie. "
         case .Weight(.Ascending, let time):
-            return "Cokolwiek się przytyło " + pastTimeModifier(time, .End)
+            return "Przytyło Ci się " + pastTimeModifier(time, .End)
         case .Weight(.Descending, let time):
             return pastTimeModifier(time, .Beginning) + "ciałko zleciało. "
         case .Weight(.Steady, let time):
@@ -63,17 +62,17 @@ struct CommunicateGenerator {
         case .Distance(.Ascending, let time):
             return "Może dlatego, że coraz więcej biegasz " + pastTimeModifier(time, .End)
         case .Distance(.Descending, let time):
-            return pastTimeModifier(time, .Beginning) + "coraz mniej biegasz - może to przyczyna?"
+            return pastTimeModifier(time, .Beginning) + "coraz mniej biegasz - może to przyczyna? "
         case .Distance(.Steady, let time):
             return "To, że " + pastTimeModifier(time, .Middle) + "może być powodem. "
         case .Weight(.Ascending, let time):
-            return "Gdyby nie to, że " + pastTimeModifier(time, .Middle) + "Twoja waga rosła, może byłoby inaczej."
+            return "Gdyby nie to, że " + pastTimeModifier(time, .Middle) + "Twoja waga rosła, może byłoby inaczej. "
         case .Weight(.Descending, let time):
             return "To pewnie dlatego, że " + pastTimeModifier(time, .Middle) + "ciałko zleciało. "
         case .Weight(.Steady, let time):
             return pastTimeModifier(time, .Beginning) + "Twoja waga się nie zmienia i to może być powód. "
         case .Sleep(.Ascending, let time):
-            return "Może to mieć związek z tym, że " + pastTimeModifier(time, .Middle) + "śpisz coraz więcej."
+            return "Może to mieć związek z tym, że " + pastTimeModifier(time, .Middle) + "śpisz coraz więcej. "
         case .Sleep(.Descending, let time):
             return "Wpływ na to może mieć coraz krótszy sen " + pastTimeModifier(time, .End)
         case .Sleep(.Steady, let time):
@@ -86,7 +85,7 @@ struct CommunicateGenerator {
     func descriptionForSuggestion(cause: DataInsight, _ communicate: String) -> String {
         switch cause {
         case .Distance(.Ascending, let time):
-            return "Warto, żebyś zaczął więcej biegać " + futureTimeModifier(time, .End)
+            return "Warto, żebyś zaczął więcej biegać. "
         case .Distance(.Descending, let time):
             return futureTimeModifier(time, .Beginning) + "spróbuj mniej biegać. "
         case .Distance(.Steady, let time):
@@ -124,12 +123,11 @@ struct CommunicateGenerator {
         }
         switch modifier {
         case .Beginning:
-            time = time + " "
             var stringArray = time.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let firstArray = [stringArray.first!.capitalizedString]
             stringArray.removeAtIndex(0)
             stringArray = firstArray + stringArray
-            time = stringArray.reduce("", combine: { (acc, elem) in return acc + elem })
+            time = stringArray.reduce("", combine: { (acc, elem) in return acc + elem + " " })
         case .Middle:
             time = " " + time + " "
         case .End:
@@ -154,12 +152,11 @@ struct CommunicateGenerator {
         }
         switch modifier {
         case .Beginning:
-            time = time + " "
             var stringArray = time.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let firstArray = [stringArray.first!.capitalizedString]
             stringArray.removeAtIndex(0)
             stringArray = firstArray + stringArray
-            time = stringArray.reduce("", combine: { (acc, elem) in return acc + elem })
+            time = stringArray.reduce("", combine: { (acc, elem) in return acc + elem + " " })
         case .Middle:
             time = " " + time + " "
         case .End:
