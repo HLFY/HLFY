@@ -61,79 +61,134 @@ struct CommunicateProcessor {
     
     func processDataInsights(dataInsights: [DataInsight]) -> [CauseEffectSuggestion] {
         var suggestions : [CauseEffectSuggestion] = []
-        suggestions += [suggestionsForSleepDistanceHypothesis(dataInsights)]
-        suggestions += [suggestionsForDistanceWeightHypothesis(dataInsights)]
-        suggestions += [suggestionsForSleepWeightHypothesis(dataInsights)]
-        suggestions += [suggestionsForDistanceSleepHypothesis(dataInsights)]
-        suggestions += [suggestionsForWeightSleepHypothesis(dataInsights)]
+        suggestions += suggestionsForSleepDistanceHypothesis(dataInsights)
+        suggestions += suggestionsForDistanceWeightHypothesis(dataInsights)
+        suggestions += suggestionsForSleepWeightHypothesis(dataInsights)
+        suggestions += suggestionsForDistanceSleepHypothesis(dataInsights)
+        suggestions += suggestionsForWeightSleepHypothesis(dataInsights)
         return suggestions
     }
     
     // więcej śpisz, więcej biegasz (s - d)
-    private func suggestionsForSleepDistanceHypothesis(dataInsights: [DataInsight]) -> CauseEffectSuggestion {
+    private func suggestionsForSleepDistanceHypothesis(dataInsights: [DataInsight]) -> [CauseEffectSuggestion] {
         let sleep = sleepData(dataInsights)
         let distance = distanceData(dataInsights)
         
-        let cause = DataInsight.Sleep(.Ascending, .Month)
-        let effect = DataInsight.Distance(.Ascending, .Week)
-        let suggestion = DataInsight.Sleep(.Steady, .HalfWeek)
-        return CauseEffectSuggestion(cause: cause, effect: effect, suggestion: suggestion)
+        if (halfFilteredData(sleep, trend: .Ascending).count > 0
+            && halfFilteredData(distance, trend: .Ascending).count > 0) {
+                let cause = halfFilteredData(sleep, trend: .Ascending).first
+                let effect = halfFilteredData(distance, trend: .Ascending).last
+                let suggestion = DataInsight.Sleep(.Steady, .HalfWeek)
+                return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        } else if (halfFilteredData(sleep, trend: .Descending).count > 0
+            && halfFilteredData(distance, trend: .Descending).count > 0) {
+                let cause = halfFilteredData(sleep, trend: .Descending).first
+                let effect = halfFilteredData(distance, trend: .Descending).last
+                let suggestion = DataInsight.Sleep(.Ascending, .Week)
+                return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        }
+        return []
     }
     
     // więcej biegasz, chudniesz (d - w)
-    private func suggestionsForDistanceWeightHypothesis(dataInsights: [DataInsight]) -> CauseEffectSuggestion {
+    private func suggestionsForDistanceWeightHypothesis(dataInsights: [DataInsight]) -> [CauseEffectSuggestion] {
         let weight = weightData(dataInsights)
         let distance = distanceData(dataInsights)
         
-        let cause = DataInsight.Distance(.Descending, .Week)
-        let effect = DataInsight.Weight(.Ascending, .Month)
-        let suggestion = DataInsight.Distance(.Ascending, .HalfWeek)
-        return CauseEffectSuggestion(cause: cause, effect: effect, suggestion: suggestion)
+        if (halfFilteredData(weight, trend: .Descending).count > 0
+            && halfFilteredData(distance, trend: .Ascending).count > 0) {
+                let cause = halfFilteredData(distance, trend: .Ascending).first
+                let effect = halfFilteredData(weight, trend: .Ascending).last
+                let suggestion = DataInsight.Distance(.Steady, .Now)
+                return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        } else if (halfFilteredData(weight, trend: .Ascending).count > 0
+            && halfFilteredData(distance, trend: .Descending).count > 0) {
+                let cause = halfFilteredData(distance, trend: .Descending).first
+                let effect = halfFilteredData(weight, trend: .Descending).last
+                let suggestion = DataInsight.Distance(.Ascending, .Week)
+                return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        }
+        
+        return []
     }
     
     // mniej śpisz, chudniesz (s - w)
-    private func suggestionsForSleepWeightHypothesis(dataInsights: [DataInsight]) -> CauseEffectSuggestion {
+    private func suggestionsForSleepWeightHypothesis(dataInsights: [DataInsight]) -> [CauseEffectSuggestion] {
         let sleep = sleepData(dataInsights)
         let weight = weightData(dataInsights)
         
-        let cause = DataInsight.Sleep(.Descending, .HalfWeek)
-        let effect = DataInsight.Weight(.Descending, .Week)
-        let suggestion = DataInsight.Distance(.Ascending, .Now)
-        return CauseEffectSuggestion(cause: cause, effect: effect, suggestion: suggestion)
+        if (halfFilteredData(weight, trend: .Descending).count > 0
+            && halfFilteredData(sleep, trend: .Descending).count > 0) {
+                let cause = halfFilteredData(sleep, trend: .Descending).first
+                let effect = halfFilteredData(weight, trend: .Descending).last
+                let suggestion = DataInsight.Sleep(.Steady, .Now)
+                return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        } else if (halfFilteredData(weight, trend: .Ascending).count > 0
+            && halfFilteredData(sleep, trend: .Ascending).count > 0) {
+                let cause = halfFilteredData(sleep, trend: .Ascending).first
+                let effect = halfFilteredData(weight, trend: .Ascending).last
+                let suggestion = DataInsight.Distance(.Ascending, .Week)
+                return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        }
+        
+        return []
+        
     }
     
     // więcej biegasz, więcej śpisz (d - s)
-    private func suggestionsForDistanceSleepHypothesis(dataInsights: [DataInsight]) -> CauseEffectSuggestion {
+    private func suggestionsForDistanceSleepHypothesis(dataInsights: [DataInsight]) -> [CauseEffectSuggestion] {
         let sleep = sleepData(dataInsights)
         let distance = distanceData(dataInsights)
         
-        let cause = DataInsight.Distance(.Ascending, .Week)
-        let effect = DataInsight.Sleep(.Ascending, .HalfWeek)
-        let suggestion = DataInsight.Distance(.Steady, .Month)
-        return CauseEffectSuggestion(cause: cause, effect: effect, suggestion: suggestion)
+        if (halfFilteredData(distance, trend: .Descending).count > 0
+            && halfFilteredData(sleep, trend: .Descending).count > 0) {
+                let cause = halfFilteredData(distance, trend: .Descending).first
+                let effect = halfFilteredData(sleep, trend: .Descending).last
+                let suggestion = DataInsight.Distance(.Ascending, .Now)
+                return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        } else if (halfFilteredData(distance, trend: .Ascending).count > 0
+            && halfFilteredData(sleep, trend: .Ascending).count > 0) {
+                let cause = halfFilteredData(distance, trend: .Ascending).first
+                let effect = halfFilteredData(sleep, trend: .Ascending).last
+                let suggestion = DataInsight.Distance(.Steady, .Week)
+                return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        }
+        
+        return []
     }
     
     // chudniesz, mniej śpisz (w - s)
-    private func suggestionsForWeightSleepHypothesis(dataInsights: [DataInsight]) -> CauseEffectSuggestion {
+    private func suggestionsForWeightSleepHypothesis(dataInsights: [DataInsight]) -> [CauseEffectSuggestion] {
         let sleep = sleepData(dataInsights)
         let weight = weightData(dataInsights)
         
-        let cause = DataInsight.Weight(.Descending, .Month)
-        let effect = DataInsight.Sleep(.Descending, .Week)
-        let suggestion = DataInsight.Weight(.Ascending, .Now)
-        return CauseEffectSuggestion(cause: cause, effect: effect, suggestion: suggestion)
+        if (halfFilteredData(weight, trend: .Descending).count > 0
+            && halfFilteredData(sleep, trend: .Descending).count > 0) {
+                let cause = halfFilteredData(weight, trend: .Descending).first
+                let effect = halfFilteredData(sleep, trend: .Descending).last
+                let suggestion = DataInsight.Weight(.Ascending, .Now)
+                return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        } else if (halfFilteredData(weight, trend: .Ascending).count > 0
+            && halfFilteredData(sleep, trend: .Ascending).count > 0) {
+                let cause = halfFilteredData(weight, trend: .Ascending).first
+                let effect = halfFilteredData(sleep, trend: .Ascending).last
+                let suggestion = DataInsight.Weight(.Steady, .Week)
+                return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        }
+        
+        return []
     }
     
     func intervalForDates(start: Double, _ end: Double) -> DataInsight.TimeInterval {
         let delta = end - start
         switch delta {
-        case let x where x >= 0.0 && x < dailyInterval:
+        case let x where x >= 0.0 && x < dayInterval:
             return .Now
-        case let x where x >= dailyInterval && x < dailyInterval*2:
+        case let x where x >= dayInterval && x < dayInterval*2:
             return .Day
-        case let x where x >= dailyInterval*2 && x < dailyInterval*5:
+        case let x where x >= dayInterval*2 && x < dayInterval*5:
             return .HalfWeek
-        case let x where x >= dailyInterval*5 && x < dailyInterval*10:
+        case let x where x >= dayInterval*5 && x < dayInterval*10:
             return .Week
         default:
             return .Month
@@ -195,4 +250,38 @@ struct CommunicateProcessor {
         })
     }
     
+    func filteredData(data: [DataInsight], trend: DataInsight.DataTrend, interval: DataInsight.TimeInterval) -> [DataInsight] {
+        return data.filter({ insight in
+            switch insight {
+            case .Weight(trend,interval):
+                return true
+            case .Sleep(trend,interval):
+                return true
+            case .Step(trend,interval):
+                return true
+            case .Distance(trend,interval):
+                return true
+            default:
+                return false
+            }
+        })
+    }
+    
+    func halfFilteredData(data: [DataInsight], trend: DataInsight.DataTrend) -> [DataInsight] {
+        return data.filter({ insight in
+            switch insight {
+            case .Weight(trend,_):
+                return true
+            case .Sleep(trend,_):
+                return true
+            case .Step(trend,_):
+                return true
+            case .Distance(trend,_):
+                return true
+            default:
+                return false
+            }
+        })
+    }
+
 }
