@@ -17,7 +17,7 @@
                BlueprintIdentifier = "CEC46D021A1758A80075541A"
                BuildableName = "hlfy.app"
                BlueprintName = "hlfy"
-               ReferencedContainer = "container:hlfy.xcodeproj">
+               ReferencedContainer = "container:HLFY.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "CEC46D171A1758A90075541A"
                BuildableName = "hlfyTests.xctest"
                BlueprintName = "hlfyTests"
-               ReferencedContainer = "container:hlfy.xcodeproj">
+               ReferencedContainer = "container:HLFY.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -49,7 +49,7 @@
                BlueprintIdentifier = "CEC46D171A1758A90075541A"
                BuildableName = "hlfyTests.xctest"
                BlueprintName = "hlfyTests"
-               ReferencedContainer = "container:hlfy.xcodeproj">
+               ReferencedContainer = "container:HLFY.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -59,7 +59,7 @@
             BlueprintIdentifier = "CEC46D021A1758A80075541A"
             BuildableName = "hlfy.app"
             BlueprintName = "hlfy"
-            ReferencedContainer = "container:hlfy.xcodeproj">
+            ReferencedContainer = "container:HLFY.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -78,7 +78,7 @@
             BlueprintIdentifier = "CEC46D021A1758A80075541A"
             BuildableName = "hlfy.app"
             BlueprintName = "hlfy"
-            ReferencedContainer = "container:hlfy.xcodeproj">
+            ReferencedContainer = "container:HLFY.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,7 +96,7 @@
             BlueprintIdentifier = "CEC46D021A1758A80075541A"
             BuildableName = "hlfy.app"
             BlueprintName = "hlfy"
-            ReferencedContainer = "container:hlfy.xcodeproj">
+            ReferencedContainer = "container:HLFY.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

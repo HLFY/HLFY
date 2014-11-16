@@ -10,10 +10,8 @@ import Foundation
 
 func performUpdate(weight:[(Double, Double)],distance:[(Double, Double)],sleep:[(Double, Double)]) {
     let hlfySharedDefaults : NSUserDefaults = NSUserDefaults(suiteName:appGroupID)!
-    let communicate = CommunicateBuilder().withWeightData([])
-        .withStepsData([])
-        .withDistanceData([])
-        .withSleepData([])
+    let communicate = CommunicateBuilder().withWeightData(weight)
+        .withDistanceData(distance)
         .build()
     hlfySharedDefaults.setObject(communicate, forKey: widgetCommunicateKey)
     hlfySharedDefaults.setObject(NSDate(), forKey: widgetCommunicateTimestampKey)
