@@ -15,7 +15,7 @@ class CommunicateBuilder {
     var dataInsights : [DataInsight] = []
         
     func appendDataInsights(insights: [DataInsight]) {
-        insights.map({ self.dataInsights.append($0) })
+        dataInsights = dataInsights + insights
     }
     
     func withWeightData(weightData: [(Double, Double)]) -> CommunicateBuilder {

@@ -16,7 +16,7 @@ struct CommunicateProcessor {
         if let relative = weightData.last {
             for weight in weightData {
                 let interval = intervalForDates(weight.0, relative.0)
-                let trend = trendForValues(weight.1, weight.1)
+                let trend = trendForValues(weight.1, relative.1)
                 insights.append(.Weight(trend, interval))
             }
         }
@@ -26,9 +26,9 @@ struct CommunicateProcessor {
     func processSleepData(sleepData: [(Double, Double)]) -> [DataInsight] {
         var insights : [DataInsight] = []
         if let relative = sleepData.last {
-            for weight in sleepData {
-                let interval = intervalForDates(weight.0, relative.0)
-                let trend = trendForValues(weight.1, weight.1)
+            for sleep in sleepData {
+                let interval = intervalForDates(sleep.0, relative.0)
+                let trend = trendForValues(sleep.1, relative.1)
                 insights.append(.Sleep(trend, interval))
             }
         }
@@ -38,9 +38,9 @@ struct CommunicateProcessor {
     func processDistanceData(distanceData: [(Double, Double)]) -> [DataInsight] {
         var insights : [DataInsight] = []
         if let relative = distanceData.last {
-            for weight in distanceData {
-                let interval = intervalForDates(weight.0, relative.0)
-                let trend = trendForValues(weight.1, weight.1)
+            for distance in distanceData {
+                let interval = intervalForDates(distance.0, relative.0)
+                let trend = trendForValues(distance.1, relative.1)
                 insights.append(.Distance(trend, interval))
             }
         }
@@ -50,9 +50,9 @@ struct CommunicateProcessor {
     func processStepData(stepData: [(Double, Double)]) -> [DataInsight] {
         var insights : [DataInsight] = []
         if let relative = stepData.last {
-            for weight in stepData {
-                let interval = intervalForDates(weight.0, relative.0)
-                let trend = trendForValues(weight.1, weight.1)
+            for step in stepData {
+                let interval = intervalForDates(step.0, relative.0)
+                let trend = trendForValues(step.1, relative.1)
                 insights.append(.Step(trend, interval))
             }
         }
@@ -182,13 +182,13 @@ struct CommunicateProcessor {
     func intervalForDates(start: Double, _ end: Double) -> DataInsight.TimeInterval {
         let delta = end - start
         switch delta {
-        case let x where x >= 0.0 && x < dayInterval:
+        case let x where (x >= 0.0 && x < dayInterval):
             return .Now
-        case let x where x >= dayInterval && x < dayInterval*2:
+        case let x where (x >= dayInterval && x < dayInterval*2):
             return .Day
-        case let x where x >= dayInterval*2 && x < dayInterval*5:
+        case let x where (x >= dayInterval*2 && x < dayInterval*5):
             return .HalfWeek
-        case let x where x >= dayInterval*5 && x < dayInterval*10:
+        case let x where (x >= dayInterval*5 && x < dayInterval*10):
             return .Week
         default:
             return .Month
@@ -196,12 +196,11 @@ struct CommunicateProcessor {
     }
     
     func trendForValues(start: Double, _ end: Double) -> DataInsight.DataTrend {
-        switch (start, end) {
-        case let (x,y) where x < y:
+        if start < end {
             return .Ascending
-        case let (x, y) where x > y:
+        } else if start > end {
             return .Descending
-        default:
+        } else {
             return .Steady
         }
     }
