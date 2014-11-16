@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     let distanceCountType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)
     let sleepCategoryType = HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)
     
+    var weightSamples: [(Double, Double)] = []
+    var distanceSamples: [(Double, Double)] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getHealthKitData()
@@ -31,6 +34,9 @@ class ViewController: UIViewController {
             fetchRecordedWeightsInLastDay()
             fetchRecordedDistanceInLastDay()
             fetchRecordedSleepInLastDay()
+            
+            performUpdate(self.weightSamples, self.distanceSamples)
+            
             completionHandler()
     }
     
@@ -117,6 +123,7 @@ class ViewController: UIViewController {
         println("weight sample")
         println(samples)
         
+        self?.weightSamples = samples
           
         } else {
           print("Could not read the user's weight ")
@@ -159,7 +166,7 @@ class ViewController: UIViewController {
                     println("distance sample")
                     println(samples)
                     
-                    
+                    self?.distanceSamples = samples
                     
                 } else {
                     print("Could not read the user's distance ")

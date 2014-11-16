@@ -8,7 +8,7 @@
 
 import Foundation
 
-func performUpdate() {
+func performUpdate(weight:[(Double, Double)],distance:[(Double, Double)]) {
     let hlfySharedDefaults : NSUserDefaults = NSUserDefaults(suiteName:appGroupID)!
     let communicate = CommunicateBuilder().withWeightData([])
         .withStepsData([])
@@ -17,6 +17,7 @@ func performUpdate() {
         .build()
     hlfySharedDefaults.setObject(communicate, forKey: widgetCommunicateKey)
     hlfySharedDefaults.setObject(NSDate(), forKey: widgetCommunicateTimestampKey)
-    println("data updated: " + communicate)
+    println("shared container data updated: " + communicate)
 }
+
 
