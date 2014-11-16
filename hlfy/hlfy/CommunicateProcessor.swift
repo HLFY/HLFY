@@ -86,8 +86,13 @@ struct CommunicateProcessor {
                 let effect = halfFilteredData(distance, trend: .Descending).last
                 let suggestion = DataInsight.Sleep(.Ascending, .Week)
                 return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        } else {
+            let cause = DataInsight.Sleep(.Ascending, .Month)
+            let effect = DataInsight.Distance(.Ascending, .Week)
+            let suggestion = DataInsight.Sleep(.Steady, .HalfWeek)
+            return [CauseEffectSuggestion(cause: cause, effect: effect, suggestion: suggestion)]
+
         }
-        return []
     }
     
     // więcej biegasz, chudniesz (d - w)
@@ -107,9 +112,12 @@ struct CommunicateProcessor {
                 let effect = halfFilteredData(weight, trend: .Descending).last
                 let suggestion = DataInsight.Distance(.Ascending, .Week)
                 return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        } else {
+            let cause = DataInsight.Distance(.Descending, .Week)
+            let effect = DataInsight.Weight(.Ascending, .Month)
+            let suggestion = DataInsight.Distance(.Ascending, .HalfWeek)
+            return [CauseEffectSuggestion(cause: cause, effect: effect, suggestion: suggestion)]
         }
-        
-        return []
     }
     
     // mniej śpisz, chudniesz (s - w)
@@ -129,9 +137,12 @@ struct CommunicateProcessor {
                 let effect = halfFilteredData(weight, trend: .Ascending).last
                 let suggestion = DataInsight.Distance(.Ascending, .Week)
                 return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        } else {
+            let cause = DataInsight.Sleep(.Descending, .HalfWeek)
+            let effect = DataInsight.Weight(.Descending, .Week)
+            let suggestion = DataInsight.Distance(.Ascending, .Now)
+            return [CauseEffectSuggestion(cause: cause, effect: effect, suggestion: suggestion)]
         }
-        
-        return []
         
     }
     
@@ -152,9 +163,12 @@ struct CommunicateProcessor {
                 let effect = halfFilteredData(sleep, trend: .Ascending).last
                 let suggestion = DataInsight.Distance(.Steady, .Week)
                 return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        } else {
+            let cause = DataInsight.Distance(.Ascending, .Week)
+            let effect = DataInsight.Sleep(.Ascending, .HalfWeek)
+            let suggestion = DataInsight.Distance(.Steady, .Month)
+            return [CauseEffectSuggestion(cause: cause, effect: effect, suggestion: suggestion)]
         }
-        
-        return []
     }
     
     // chudniesz, mniej śpisz (w - s)
@@ -174,9 +188,12 @@ struct CommunicateProcessor {
                 let effect = halfFilteredData(sleep, trend: .Ascending).last
                 let suggestion = DataInsight.Weight(.Steady, .Week)
                 return [CauseEffectSuggestion(cause: cause!, effect: effect!, suggestion: suggestion)]
+        } else {
+            let cause = DataInsight.Weight(.Descending, .Month)
+            let effect = DataInsight.Sleep(.Descending, .Week)
+            let suggestion = DataInsight.Weight(.Ascending, .Now)
+            return [CauseEffectSuggestion(cause: cause, effect: effect, suggestion: suggestion)]
         }
-        
-        return []
     }
     
     func intervalForDates(start: Double, _ end: Double) -> DataInsight.TimeInterval {

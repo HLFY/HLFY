@@ -193,7 +193,7 @@ class ViewController: UIViewController {
                 error: NSError!) in
                 println("sleep results")
                 println(results)
-                if results.count > 0{
+                if results?.count > 0{
                     println("Distance data from change")
                     
                     
