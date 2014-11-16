@@ -77,7 +77,7 @@ class ViewController: UIViewController {
             let now = NSDate()
             let yesterday =
             NSCalendar.currentCalendar().dateByAddingUnit(.DayCalendarUnit,
-                value: -30,
+                value: -1,
                 toDate: now,
                 options: .WrapComponents)
             return HKQuery.predicateForSamplesWithStartDate(yesterday, endDate: now, options: .StrictEndDate)
