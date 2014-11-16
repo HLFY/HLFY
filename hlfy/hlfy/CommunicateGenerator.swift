@@ -44,7 +44,7 @@ struct CommunicateGenerator {
         case .Weight(.Ascending, let time):
             return "Cokolwiek się przytyło " + pastTimeModifier(time, .End)
         case .Weight(.Descending, let time):
-            return pastTimeModifier(time, .Beginning) + "trochę ciałka zleciało. "
+            return pastTimeModifier(time, .Beginning) + "ciałko zleciało. "
         case .Weight(.Steady, let time):
             return pastTimeModifier(time, .Beginning) + "ważysz wciąż tyle samo. "
         case .Sleep(.Ascending, let time):
@@ -69,7 +69,7 @@ struct CommunicateGenerator {
         case .Weight(.Ascending, let time):
             return "Gdyby nie to, że " + pastTimeModifier(time, .Middle) + "Twoja waga rosła, może byłoby inaczej."
         case .Weight(.Descending, let time):
-            return "To pewnie dlatego, że " + pastTimeModifier(time, .Middle) + "trochę ciałka zleciało. "
+            return "To pewnie dlatego, że " + pastTimeModifier(time, .Middle) + "ciałko zleciało. "
         case .Weight(.Steady, let time):
             return pastTimeModifier(time, .Beginning) + "Twoja waga się nie zmienia i to może być powód. "
         case .Sleep(.Ascending, let time):
@@ -86,7 +86,7 @@ struct CommunicateGenerator {
     func descriptionForSuggestion(cause: DataInsight, _ communicate: String) -> String {
         switch cause {
         case .Distance(.Ascending, let time):
-            return "Warto, żebyś zaczął trochę więcej biegać " + futureTimeModifier(time, .End)
+            return "Warto, żebyś zaczął więcej biegać " + futureTimeModifier(time, .End)
         case .Distance(.Descending, let time):
             return futureTimeModifier(time, .Beginning) + "spróbuj mniej biegać. "
         case .Distance(.Steady, let time):
@@ -98,11 +98,11 @@ struct CommunicateGenerator {
         case .Weight(.Steady, let time):
             return "Utrzymuj " + futureTimeModifier(time, .Middle) + "tą samą wagę. "
         case .Sleep(.Ascending, let time):
-            return "Coraz więcej sypiasz " + futureTimeModifier(time, .End)
+            return "Postaraj się " + futureTimeModifier(time, .Middle) + "spać więcej. "
         case .Sleep(.Descending, let time):
-            return "Czy " + futureTimeModifier(time, .Middle) + "masz problemy ze snem? "
+            return futureTimeModifier(time, .Beginning) + "warto mniej spać. "
         case .Sleep(.Steady, let time):
-            return futureTimeModifier(time, .Beginning) + "śpisz stabilnie. "
+            return "Śpij wciąż tyle samo " + futureTimeModifier(time, .End)
         default:
             return ""
         }
