@@ -40,7 +40,7 @@ struct CommunicateGenerator {
         case .Distance(.Descending, let time):
             return "Mniej było przebiegnięte " + pastTimeModifier(time, .End)
         case .Distance(.Steady, let time):
-            return "Niewiele się zmieniło " + pastTimeModifier(time, .Middle) + "jeśli chodzi o bieganie. "
+            return "Bez zmian " + pastTimeModifier(time, .Middle) + "w kwestii biegania. "
         case .Weight(.Ascending, let time):
             return "Przytyło Ci się " + pastTimeModifier(time, .End)
         case .Weight(.Descending, let time):
@@ -50,7 +50,7 @@ struct CommunicateGenerator {
         case .Sleep(.Ascending, let time):
             return "Snu było więcej " + pastTimeModifier(time, .End)
         case .Sleep(.Descending, let time):
-            return "Czy " + pastTimeModifier(time, .Middle) + "zdarzały się problemy ze snem? "
+            return "Czy " + pastTimeModifier(time, .Middle) + "miałeś problemy ze snem? "
         case .Sleep(.Steady, let time):
             return pastTimeModifier(time, .Beginning) + "sen był stabilny. "
         default:
@@ -63,21 +63,21 @@ struct CommunicateGenerator {
         case .Distance(.Ascending, let time):
             return "Może dlatego, że więcej było przebiegnięte " + pastTimeModifier(time, .End)
         case .Distance(.Descending, let time):
-            return pastTimeModifier(time, .Beginning) + "mniej było biegania - może to przyczyna? "
+            return pastTimeModifier(time, .Beginning) + "mniej było biegania. Czy to przyczyna? "
         case .Distance(.Steady, let time):
-            return "To, że przebiegnięty dystans się nie zmienił" + pastTimeModifier(time, .Middle) + "może być powodem. "
+            return "To, że przebiegnięty dystans się nie zmienił" + pastTimeModifier(time, .Middle) + "jest powodem. "
         case .Weight(.Ascending, let time):
-            return "Gdyby nie to, że " + pastTimeModifier(time, .Middle) + "Twoja waga rosła, może byłoby inaczej. "
+            return "Gdyby nie to, że " + pastTimeModifier(time, .Middle) + "Twoja waga rosła, byłoby inaczej. "
         case .Weight(.Descending, let time):
-            return "To pewnie dlatego, że " + pastTimeModifier(time, .Middle) + "ciałko zleciało. "
+            return "To dlatego, że " + pastTimeModifier(time, .Middle) + "ciałko zleciało. "
         case .Weight(.Steady, let time):
             return pastTimeModifier(time, .Beginning) + "Twoja waga się nie zmieniła i to może być powód. "
         case .Sleep(.Ascending, let time):
-            return "Może to mieć związek z tym, że " + pastTimeModifier(time, .Middle) + "sen był dłuższy. "
+            return "Ma to związek z tym, że " + pastTimeModifier(time, .Middle) + "sen był dłuższy. "
         case .Sleep(.Descending, let time):
-            return "Wpływ na to może mieć coraz krótszy sen " + pastTimeModifier(time, .End)
+            return "Wpływ na to ma coraz krótszy sen " + pastTimeModifier(time, .End)
         case .Sleep(.Steady, let time):
-            return "Stabilny sen " + pastTimeModifier(time, .Middle) + "pewnie ma na to wpływ. "
+            return "Stabilny sen " + pastTimeModifier(time, .Middle) + "ma na to wpływ. "
         default:
             return ""
         }
