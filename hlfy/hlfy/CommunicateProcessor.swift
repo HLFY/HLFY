@@ -127,13 +127,13 @@ struct CommunicateProcessor {
     func intervalForDates(start: Double, _ end: Double) -> DataInsight.TimeInterval {
         let delta = end - start
         switch delta {
-        case let x where x >= 0.0 && x < dailyInterval:
+        case let x where x >= 0.0 && x < dayInterval:
             return .Now
-        case let x where x >= dailyInterval && x < dailyInterval*2:
+        case let x where x >= dayInterval && x < dayInterval*2:
             return .Day
-        case let x where x >= dailyInterval*2 && x < dailyInterval*5:
+        case let x where x >= dayInterval*2 && x < dayInterval*5:
             return .HalfWeek
-        case let x where x >= dailyInterval*5 && x < dailyInterval*10:
+        case let x where x >= dayInterval*5 && x < dayInterval*10:
             return .Week
         default:
             return .Month
