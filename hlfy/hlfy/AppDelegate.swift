@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         if let range = url.absoluteString!.rangeOfString(hlfySchemeDummyDataURLComponent) {
-            return false
+            exit(0)
         } else if let range = url.absoluteString!.rangeOfString(hlfySchemeRefreshDataURLComponent) {
             performUpdate()
         }
