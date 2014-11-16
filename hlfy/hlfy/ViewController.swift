@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     
     var weightSamples: [(Double, Double)] = []
     var distanceSamples: [(Double, Double)] = []
+    var sleepSamples: [(Double, Double)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,7 @@ class ViewController: UIViewController {
             fetchRecordedDistanceInLastDay()
             fetchRecordedSleepInLastDay()
             
-            performUpdate(self.weightSamples, self.distanceSamples)
+            performUpdate(self.weightSamples, self.distanceSamples, self.sleepSamples)
             
             completionHandler()
     }
@@ -76,7 +77,7 @@ class ViewController: UIViewController {
             let now = NSDate()
             let yesterday =
             NSCalendar.currentCalendar().dateByAddingUnit(.DayCalendarUnit,
-                value: -1,
+                value: -30,
                 toDate: now,
                 options: .WrapComponents)
             return HKQuery.predicateForSamplesWithStartDate(yesterday, endDate: now, options: .StrictEndDate)
@@ -88,7 +89,7 @@ class ViewController: UIViewController {
     
     func fetchRecordedWeightsInLastDay(){
     
-    let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
+    let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate,
       ascending: true)
     
     var query = HKSampleQuery(sampleType: weightQuantityType,
@@ -139,7 +140,7 @@ class ViewController: UIViewController {
     
     func fetchRecordedDistanceInLastDay(){
         
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate,
             ascending: true)
         
         var query = HKSampleQuery(sampleType: distanceCountType,
@@ -180,7 +181,7 @@ class ViewController: UIViewController {
     
     func fetchRecordedSleepInLastDay(){
         
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate,
             ascending: true)
         
         var query = HKSampleQuery(sampleType: sleepCategoryType,
@@ -192,27 +193,31 @@ class ViewController: UIViewController {
                 error: NSError!) in
                 println("sleep results")
                 println(results)
-//                if results.count > 0{
-//                    println("Distance data from change")
-//                    
-//                    for sample in results as [HKCategorySample] {
-//                        
-//                        let sleep = sample.endDate.timeIntervalSince1970 - sample.startDate.timeIntervalSince1970;
-//                        
-//                        dispatch_async(dispatch_get_main_queue(), {
-//                            
-//                            let strongSelf = self!
-//                            
-//                            println("Sleep length has been changed to " + "\(sleep)")
-//                            println("Change date = \(sample.startDate)")
-//                            
-//                        })
-//                    }
-//                    
-//                } else {
-//                    print("Could not read the user's sleep ")
-//                    println("or no sleep data was available")
-//                }
+                if results.count > 0{
+                    println("Distance data from change")
+                    
+                    
+                    var samples: [(Double, Double)] = [];
+                    for sample in results as [HKCategorySample] {
+                        
+                        let sleep = sample.endDate.timeIntervalSinceNow - sample.startDate.timeIntervalSinceNow;
+                        
+                        dispatch_async(dispatch_get_main_queue(), {
+                            
+                            let strongSelf = self!
+                            
+                            println("Sleep length has been changed to " + "\(sleep)")
+                            println("Change date = \(sample.startDate)")
+                            
+                        })
+                        samples.append(sample.startDate.timeIntervalSince1970,sleep)
+
+                    }
+                    self?.sleepSamples = samples
+                } else {
+                    print("Could not read the user's sleep ")
+                    println("or no sleep data was available")
+                }
                 
                 
         })
