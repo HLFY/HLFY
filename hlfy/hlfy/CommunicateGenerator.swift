@@ -23,22 +23,27 @@ struct CommunicateGenerator {
     func descriptionForData(suggestion: CauseEffectSuggestion) -> String {
         var communicate = ""
         var fullStop = true
-        (fullStop, communicate) = descriptionForCause(fullStop, suggestion.cause, communicate)
-        (fullStop, communicate) = descriptionForEffect(fullStop, suggestion.effect, communicate)
-        (fullStop, communicate) = descriptionForSuggestion(fullStop, suggestion.suggestion, communicate)
+        communicate = descriptionForCause(suggestion.cause, communicate)
+        communicate = descriptionForEffect(suggestion.effect, communicate)
+        communicate = descriptionForSuggestion(suggestion.suggestion, communicate)
         return communicate
     }
     
-    func descriptionForCause(fullStop: Bool, _ cause: DataInsight, _ communicate: String) -> (Bool, String) {
-        return (true, "Bla.")
+    func descriptionForCause(cause: DataInsight, _ communicate: String) -> String {
+        switch cause {
+        case .Distance(DataInsight.DataTrend.Ascending, let time):
+            return "Ble."
+        default:
+            return "Ble."
+        }
     }
 
-    func descriptionForEffect(fullStop: Bool, _ cause: DataInsight, _ communicate: String) -> (Bool, String) {
-        return (true, "Ble.")
+    func descriptionForEffect(cause: DataInsight, _ communicate: String) -> String {
+        return "Ble."
     }
 
-    func descriptionForSuggestion(fullStop: Bool, _ cause: DataInsight, _ communicate: String) -> (Bool, String) {
-         return (true, "Blu.")
+    func descriptionForSuggestion(cause: DataInsight, _ communicate: String) -> String {
+         return "Blu."
     }
     
 }
