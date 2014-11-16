@@ -8,7 +8,7 @@
 
 import Foundation
 
-func performUpdate(weight:[(Double, Double)],distance:[(Double, Double)]) {
+func performUpdate(weight:[(Double, Double)],distance:[(Double, Double)],sleep:[(Double, Double)]) {
     let hlfySharedDefaults : NSUserDefaults = NSUserDefaults(suiteName:appGroupID)!
     let communicate = CommunicateBuilder().withWeightData(weight)
         .withDistanceData(distance)
