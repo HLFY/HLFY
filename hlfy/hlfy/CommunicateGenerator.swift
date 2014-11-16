@@ -17,7 +17,8 @@ struct CommunicateGenerator {
     
     func generateFromData(data: [CauseEffectSuggestion]) -> String {
         if data.count > 0 {
-            return descriptionForData(data[0])
+            let randomIndex = Int(arc4random_uniform(UInt32(data.count)))
+            return descriptionForData(data[randomIndex])
         } else {
             return NSLocalizedString("widgetDefaultCommunicate", comment: "")
         }
@@ -35,9 +36,9 @@ struct CommunicateGenerator {
     func descriptionForEffect(cause: DataInsight, _ communicate: String) -> String {
         switch cause {
         case .Distance(.Ascending, let time):
-            return pastTimeModifier(time, .Beginning) + "biegasz coraz więcej. "
+            return pastTimeModifier(time, .Beginning) + "biegania było coraz więcej. "
         case .Distance(.Descending, let time):
-            return "Coraz mniej biegasz " + pastTimeModifier(time, .End)
+            return "Coraz mniej było biegania " + pastTimeModifier(time, .End)
         case .Distance(.Steady, let time):
             return "Niewiele się zmieniło " + pastTimeModifier(time, .Middle) + "jeśli chodzi o bieganie. "
         case .Weight(.Ascending, let time):
@@ -45,13 +46,13 @@ struct CommunicateGenerator {
         case .Weight(.Descending, let time):
             return pastTimeModifier(time, .Beginning) + "ciałko zleciało. "
         case .Weight(.Steady, let time):
-            return pastTimeModifier(time, .Beginning) + "ważysz wciąż tyle samo. "
+            return pastTimeModifier(time, .Beginning) + "waga była stała. "
         case .Sleep(.Ascending, let time):
-            return "Coraz więcej sypiasz " + pastTimeModifier(time, .End)
+            return "Snu było coraz więcej " + pastTimeModifier(time, .End)
         case .Sleep(.Descending, let time):
-            return "Czy " + pastTimeModifier(time, .Middle) + "masz problemy ze snem? "
+            return "Czy " + pastTimeModifier(time, .Middle) + "zdarzały się problemy ze snem? "
         case .Sleep(.Steady, let time):
-            return pastTimeModifier(time, .Beginning) + "śpisz stabilnie. "
+            return pastTimeModifier(time, .Beginning) + "sen był stabilny. "
         default:
             return ""
         }
@@ -60,19 +61,19 @@ struct CommunicateGenerator {
     func descriptionForCause(cause: DataInsight, _ communicate: String) -> String {
         switch cause {
         case .Distance(.Ascending, let time):
-            return "Może dlatego, że coraz więcej biegasz " + pastTimeModifier(time, .End)
+            return "Może dlatego, że więcej było przebiegnięte " + pastTimeModifier(time, .End)
         case .Distance(.Descending, let time):
-            return pastTimeModifier(time, .Beginning) + "coraz mniej biegasz - może to przyczyna? "
+            return pastTimeModifier(time, .Beginning) + "coraz mniej było biegania - może to przyczyna? "
         case .Distance(.Steady, let time):
-            return "To, że " + pastTimeModifier(time, .Middle) + "może być powodem. "
+            return "To, że przebiegnięty dystans się nie zmienił" + pastTimeModifier(time, .Middle) + "może być powodem. "
         case .Weight(.Ascending, let time):
             return "Gdyby nie to, że " + pastTimeModifier(time, .Middle) + "Twoja waga rosła, może byłoby inaczej. "
         case .Weight(.Descending, let time):
             return "To pewnie dlatego, że " + pastTimeModifier(time, .Middle) + "ciałko zleciało. "
         case .Weight(.Steady, let time):
-            return pastTimeModifier(time, .Beginning) + "Twoja waga się nie zmienia i to może być powód. "
+            return pastTimeModifier(time, .Beginning) + "Twoja waga się nie zmieniła i to może być powód. "
         case .Sleep(.Ascending, let time):
-            return "Może to mieć związek z tym, że " + pastTimeModifier(time, .Middle) + "śpisz coraz więcej. "
+            return "Może to mieć związek z tym, że " + pastTimeModifier(time, .Middle) + "sen był coraz dłuższy. "
         case .Sleep(.Descending, let time):
             return "Wpływ na to może mieć coraz krótszy sen " + pastTimeModifier(time, .End)
         case .Sleep(.Steady, let time):
