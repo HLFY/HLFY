@@ -15,3 +15,4 @@ let hlfySchemeBaseURL : String = "hlfy://"
 let hlfySchemeRefreshDataURLComponent : String = "refresh"
 let hlfySchemeFacebookDataURLComponent : String = "facebook"
 let hlfySchemeTwitterDataURLComponent : String = "twitter"
+let dailyInterval : Double = 86400

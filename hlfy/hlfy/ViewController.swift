@@ -19,7 +19,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< HEAD
         // Do any additional setup after loading the view, typically from a nib.
+=======
+>>>>>>> d8aa378fdcc68a73f37f7512b7d7c9ba48e4dde2
         self.getHealthKitData()
         self.startObservingChanges()
     }
