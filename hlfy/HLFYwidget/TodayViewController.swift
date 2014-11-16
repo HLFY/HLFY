@@ -77,6 +77,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     func showSocialControllerForServiceType(serviceType: NSString!) {
         if(serviceType != SLServiceTypeTwitter && serviceType != SLServiceTypeFacebook) { return }
         
+        if let extensionContext = self.extensionContext {
+            let refreshURLScheme = hlfySchemeBaseURL + hlfySchemeDummyDataURLComponent
+            extensionContext.openURL(NSURL(string: refreshURLScheme)!, completionHandler: { urlOpened in
+                if !urlOpened {
+                    self.requestNewData()
+                }
+            })
+        }
+        
         if (SLComposeViewController.isAvailableForServiceType(serviceType)) {
             
             let mySLComposerSheet: SLComposeViewController = SLComposeViewController(forServiceType: serviceType)
