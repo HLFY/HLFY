@@ -18,16 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         println("Hello HealthKit!")
-        //performUpdate()
         return true
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
-//        performUpdate()
+        performUpdate([], [], [])
     }
 
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        //performUpdate()
         completionHandler(UIBackgroundFetchResult.NewData)
     }
 
@@ -39,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             showSocialControllerForServiceType(SLServiceTypeTwitter)
             return false
         } else if let range = url.absoluteString!.rangeOfString(hlfySchemeRefreshDataURLComponent) {
-            //performUpdate()
+            performUpdate([], [], [])
         }
         return true
     }
