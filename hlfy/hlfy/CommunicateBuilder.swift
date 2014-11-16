@@ -18,22 +18,22 @@ class CommunicateBuilder {
         insights.map({ self.dataInsights.append($0) })
     }
     
-    func withWeightData(weightData: [HKQuantitySample]) -> CommunicateBuilder {
+    func withWeightData(weightData: [(Double, Double)]) -> CommunicateBuilder {
         appendDataInsights(communicateProcessor.processWeightData(weightData))
         return self;
     }
     
-    func withSleepData(sleepData: [HKCategorySample]) -> CommunicateBuilder {
+    func withSleepData(sleepData: [(Double, Double)]) -> CommunicateBuilder {
         appendDataInsights(communicateProcessor.processSleepData(sleepData))
         return self;
     }
 
-    func withDistanceData(distanceData: [HKQuantitySample]) -> CommunicateBuilder {
+    func withDistanceData(distanceData: [(Double, Double)]) -> CommunicateBuilder {
         appendDataInsights(communicateProcessor.processDistanceData(distanceData))
         return self;
     }
 
-    func withStepsData(stepData: [HKQuantitySample]) -> CommunicateBuilder {
+    func withStepsData(stepData: [(Double, Double)]) -> CommunicateBuilder {
         appendDataInsights(communicateProcessor.processStepData(stepData))
         return self;
     }

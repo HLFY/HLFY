@@ -20,6 +20,3 @@ func performUpdate() {
     println("data updated: " + communicate)
 }
 
-struct SharedContainerUpdater {
-    
-}
